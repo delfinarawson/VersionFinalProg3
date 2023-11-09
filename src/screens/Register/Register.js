@@ -33,6 +33,8 @@ class Register extends Component {
                 console.log('Registrado ok', response);
 
                  //Cambiar los estados a vacío como están al inicio.
+                 this.state.email = email;
+                 this.state.password = pass;
 
             })
             .catch( error => {

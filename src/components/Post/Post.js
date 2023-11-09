@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import { db, auth } from '../../firebase/config';
+import firebase from 'firebase/app';
 
 class Post extends Component {
 
@@ -9,7 +10,7 @@ class Post extends Component {
 
         this.state = {
             like: false,
-            cantidadDeLikes: this.props.dataPost.datos.likes.length
+            cantidadDeLikes: 0
         }
     }
 
@@ -59,7 +60,7 @@ class Post extends Component {
         console.log(this.props.dataPost.datos.likes)
         return (
             <View>
-                <Text>{ this.props.dataPost.datos.owner }</Text>
+                 <Text>{ this.props.dataPost.datos.owner }</Text>
                 <Text>{ this.props.dataPost.datos.textoPost }</Text>
                 <Text>Cantidad de Likes:{ this.state.cantidadDeLikes }</Text>
                 {
@@ -74,7 +75,6 @@ class Post extends Component {
                             <Text style={styles.textButton}>Likear</Text>    
                         </TouchableOpacity>
                 }
-                
 
                 
 
