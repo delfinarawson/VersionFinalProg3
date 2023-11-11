@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TextInput, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { db, auth } from '../../firebase/config';
 import firebase from 'firebase/app';
 
@@ -56,9 +56,14 @@ class Post extends Component {
             .catch(e => console.log(e))
     }
 
-    comment(email, comentario, date) {
+    comment(comentario, date) {
+        let comment = {
+            userName: auth.currentUser.email,
+            createdAt:date,
+            texto: comentario
+        }
         db.collection('posts').doc(this.props.dataPost.id).update({
-            comentarios: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
+            comentarios: firebase.firestore.FieldValue.arrayUnion(comment)
         })
             .then(res => this.setState({
                 user: email,
@@ -95,17 +100,28 @@ class Post extends Component {
 
                 <TextInput
                     style={styles.input}
-                    onChangeText={(text) => this.setState({ comentario: text })}
+                    onChangeText={(text) => this.setState({ comentarioTexto: text })}
                     placeholder='Comentar...'
                     keyboardType='default'
-                    value={this.state.comentario}
+                    value={this.state.comentarioTexto}
                 />
 
-                <TouchableOpacity style={styles.button} onPress={() => this.comment(auth.currentUser.email, this.state.comentario, Date.now())} >
+                <TouchableOpacity style={styles.button} onPress={() => this.comment(this.state.comentarioTexto, Date.now())} >
                     <Text style={styles.textButton}>Comentar</Text>
                 </TouchableOpacity>
-
-
+                {this.state.comentarios.length > 0 ?(
+                       <FlatList
+                       data = {this.state.comentarios}
+                       keyExtractor={(com)=> com.id}
+                       renderItem= {({item}) => (
+                        <Text style={styles.commentBox}>
+                        <Text style={styles.user}>{item.author} </Text>
+                        <Text>{comment}</Text>
+                        </Text>
+                       )} 
+                       />
+                        ) : 
+                        (<Text>No hay comentarios</Text>)}
 
 
             </View>
