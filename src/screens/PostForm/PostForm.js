@@ -17,7 +17,8 @@ class PostForm extends Component {
             owner: owner, //auth.currentUser.email,
             textoPost: textoPost, //this.state.textoPost,
             createdAt: createdAt, //Date.now(), 
-            likes: []
+            likes: [], 
+            comentarios: [], 
         })
         .then( res => console.log(res))
         .catch( e => console.log(e))
