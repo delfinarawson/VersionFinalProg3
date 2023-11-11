@@ -14,15 +14,15 @@ class Post extends Component {
         }
     }
 
-    componentDidMount(){
-        //Chequear apenas carga si el post está o no likeado
-        if(this.props.dataPost.datos.likes.includes(auth.currentUser.email)){
-            this.setState({
-                like:true
-            })
-        }
+    // componentDidMount(){
+    //     //Chequear apenas carga si el post está o no likeado
+    //     if(this.props.dataPost.datos.likes.includes(auth.currentUser.email)){
+    //         this.setState({
+    //             like:true
+    //         })
+    //     }
         
-    }
+    // }
 
     //Necesitamos en FB que cada Post tenga una propiedad con un array de emails
 
