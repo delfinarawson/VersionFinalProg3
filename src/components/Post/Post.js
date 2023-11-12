@@ -81,7 +81,7 @@ class Post extends Component {
         console.log(this.props)
         console.log(this.props.dataPost.datos.likes)
         return (
-            <View>
+            <View style={styles.container}>
                 <Text>{this.props.dataPost.datos.owner}</Text>
                 <Text>{this.props.dataPost.datos.textoPost}</Text>
                 <Text>Cantidad de Likes:{this.state.cantidadDeLikes}</Text>
@@ -132,6 +132,18 @@ class Post extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        alignItems: "center",
+        borderColor: "grey",
+        borderWidth: 3,
+        borderStyle: "solid",
+        padding: 50,
+        flex: 2,
+        display: "flex",
+        marginBottom: 2,
+        borderRadius: 10,
+        alignSelf: "center",
+      },
     formContainer: {
         paddingHorizontal: 10,
         marginTop: 20,
