@@ -7,8 +7,27 @@ class Login extends Component {
         super()
         this.state={
             email:'',
-            password:''
+            password:'',
+            logged: '',
+            cargando: ''
         }
+    }
+
+    componentDidMount(){
+        auth.onAuthStateChanged((user) => {
+            console.log(user);
+            if(user !== null){
+                this.setState({
+                    logged: true,
+                    cargando: false, 
+                }) 
+            } else {
+                this.setState({
+                    logged: false, 
+                    cargando: false,
+            })
+          }
+        })
     }
 
     login (email, pass){
@@ -21,13 +40,15 @@ class Login extends Component {
 
 
                 //Redirigir al usuario a la home del sitio.
-                this.props.navigation.navigate('Home')
+                this.props.navigation.navigate('Menu')
 
             })
             .catch( error => {
                 //Cuando Firebase responde con un error.
                 console.log(error);
             })
+
+            
     }
 
     render(){
@@ -55,8 +76,8 @@ class Login extends Component {
                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('Registro')}>
                    <Text style={styles.pararegistro}>No tengo cuenta. Registrarme.</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={ () => this.props.navigation.navigate('Home')}>
-                   <Text style={styles.volverhome}>Volver a Home</Text>
+                <TouchableOpacity onPress={ () => this.props.navigation.navigate('Menu')}>
+                   <Text style={styles.volverhome}>Ir a Home</Text>
                 </TouchableOpacity>
             </View>
         )
