@@ -59,7 +59,7 @@ class Post extends Component {
 
     comment(comentario, date) {
         let comment = {
-            userName: auth.currentUser.email,
+           // userName: auth.currentUser.email,
             createdAt:date,
             texto: comentario
         }
@@ -75,11 +75,14 @@ class Post extends Component {
             )
             .catch(e => console.log(e))
 
+
     }
+    
+    
 
 
     render() {
-        console.log(this.props)
+        console.log("props",this.props)
         console.log(this.props.dataPost.datos.likes)
         console.log(this.state.comentarioTexto)
       
@@ -112,12 +115,13 @@ class Post extends Component {
                 <TouchableOpacity style={styles.button} onPress={() => this.comment(this.state.comentarioTexto, Date.now())} >
                     <Text style={styles.textButton}>Comentar</Text>
                 </TouchableOpacity>
-                {this.state.comentarioTexto.length > 0 ?(
+                {this.props.dataPost.datos.comentarios.length > 0 ?(
                        <FlatList
+                       data = {this.props.dataPost.datos.comentarios}
                        keyExtractor={(com)=> com.id}
                        renderItem= {({item}) => (
                         <Text style={styles.commentBox}>
-                         <Text>{item.comentarioTexto}</Text>
+                         <Text>{item.texto}</Text>
                         </Text>
                        )} 
                        />
