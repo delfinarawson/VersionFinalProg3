@@ -59,7 +59,7 @@ class Post extends Component {
 
     comment(comentario, date) {
         let comment = {
-           // userName: auth.currentUser.email,
+            userName: auth.currentUser.email,
             createdAt:date,
             texto: comentario
         }
@@ -67,9 +67,9 @@ class Post extends Component {
             comentarios: firebase.firestore.FieldValue.arrayUnion(comment)
         })
             .then(res => this.setState({
-               // user: auth.currentUser.email,
+                user: auth.currentUser.email,
                 comment: this.props.dataPost.datos.comentario,
-                //cantidadDeComments: this.props.dataPost.datos.comentarios.length
+                cantidadDeComments: this.props.dataPost.datos.comentarios.length
             })
 
             )
@@ -121,7 +121,8 @@ class Post extends Component {
                        keyExtractor={(com)=> com.id}
                        renderItem= {({item}) => (
                         <Text style={styles.commentBox}>
-                         <Text>{item.texto}</Text>
+                         <Text style={styles.usuariosCom}>{item.userName}: </Text>
+                         <Text >{item.texto}</Text>
                         </Text>
                        )} 
                        />
@@ -189,6 +190,9 @@ const styles = StyleSheet.create({
     sincomments: {
         marginTop: 10,
     },
+    usuariosCom:{
+        fontWeight: "bold",
+    }
 })
 
 export default Post;
