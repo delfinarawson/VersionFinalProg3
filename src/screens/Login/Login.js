@@ -33,7 +33,7 @@ class Login extends Component {
     render(){
         return(
             <View style={styles.formContainer}>
-                <Text style={styles.titulo}>Login</Text>
+                <Text style={styles.titulo}>Ingresa a tu cuenta</Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({email: text})}

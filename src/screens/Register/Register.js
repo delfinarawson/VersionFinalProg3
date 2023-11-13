@@ -58,7 +58,7 @@ class Register extends Component {
     render(){
         return(
             <View style={styles.formContainer}>
-                <Text style={styles.titulo}>Register</Text>
+                <Text style={styles.titulo}>Crea una cuenta</Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({email: text})}

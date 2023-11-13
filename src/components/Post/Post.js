@@ -84,7 +84,7 @@ class Post extends Component {
             <View style={styles.container}>
                 <Text style={styles.owner}>{this.props.dataPost.datos.owner}</Text>
                 <Text style={styles.posteotext}>{this.props.dataPost.datos.textoPost}</Text>
-                <Text>Cantidad de Likes:{this.state.cantidadDeLikes}</Text>
+                <Text>Cantidad de Likes: {this.state.cantidadDeLikes}</Text>
                 {
                     this.state.like ?
                         <TouchableOpacity style={styles.button} onPress={() => this.unlike()}>
@@ -121,7 +121,7 @@ class Post extends Component {
                        )} 
                        />
                         ) : 
-                        (<Text>No hay comentarios</Text>)}
+                        (<Text style={styles.sincomments}>No hay comentarios</Text>)}
 
 
             </View>
@@ -174,11 +174,15 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor: 'orange'
+        borderColor: 'orange',
+        marginTop: 10,
     },
     textButton: {
         color: '#fff'
-    }
+    },
+    sincomments: {
+        marginTop: 10,
+    },
 })
 
 export default Post;
