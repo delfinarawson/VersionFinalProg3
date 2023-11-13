@@ -65,6 +65,14 @@ class Login extends Component {
 
 const styles = StyleSheet.create({
     formContainer:{
+        borderColor: 'grey',
+        borderStyle: 'solid',
+        borderWidth: 3,
+        marginLeft: 50,
+        marginTop: 50,
+        marginRight: 50,
+        borderRadius: 30,
+        backgroundColor: 'white',
         paddingHorizontal:10,
         marginTop: 20,
     },
