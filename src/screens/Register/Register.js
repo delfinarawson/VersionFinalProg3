@@ -99,7 +99,7 @@ class Register extends Component {
                     <Text style={styles.textButton}>Registrarse</Text>    
                 </TouchableOpacity>
                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('Login')}>
-                   <Text>Ya tengo cuenta. Ir al login</Text>
+                   <Text style={styles.yatengocuenta}>Ya tengo cuenta. Ir al login</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -145,10 +145,17 @@ const styles = StyleSheet.create({
         borderRadius:4, 
         borderWidth:1,
         borderStyle: 'solid',
-        borderColor: '#28a745'
+        borderColor: '#28a745',
+        marginTop: 10,
     },
     textButton:{
         color: '#fff'
+    },
+    yatengocuenta: {
+        marginBottom: 10,
+        marginTop: 10,
+        textAlign: "center",
+        fontSize: 15,
     }
 
 })

@@ -43,18 +43,18 @@ class Home extends Component {
     render(){
         return(
             <View>
-                <Text>HOME</Text>
+                <Text style={styles.home}>HOME</Text>
                 <TouchableOpacity onPressOut={()=>this.logout()}>
-                    <Text>Logout</Text>
+                    <Text style={styles.logout}>Logout</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('Mi perfil')}>
-                   <Text>Mi perfil</Text>
+                   <Text style={styles.miperfil}>Mi perfil</Text>
                 </TouchableOpacity>
 
-                <Text>Crear nuevo post</Text>
+                <Text style={styles.newpost}>Crear nuevo post</Text>
                 <PostForm />
 
-                <Text>Lista de posteos creados</Text>
+                <Text style={styles.listapost}>Lista de posteos creados</Text>
                 
                 <FlatList
                     data={this.state.posts}
@@ -72,6 +72,43 @@ class Home extends Component {
     }
 }
 
+const styles = StyleSheet.create({
+    listapost: { 
+        fontWeight: "bold",
+        color: "black",
+        textAlign: "center",
+        fontSize: 20,
+        marginTop: 30,
+        marginBottom: 30,
+    },
+    newpost: {
+        fontWeight: "bold",
+        color: "black" ,
+        textAlign: "center",
+        fontSize: 15,
+        marginTop: 25,
+    },
+    home: {
+        fontWeight: "bold",
+        color: "black" ,
+        fontSize: 17,
+        marginTop: 5,
+        textAlign: "center",
+    },
+    logout: {
+        fontWeight: "bold",
+        color: "black" ,
+        fontSize: 15,
+        marginTop: 15,
+    },
+    miperfil: {
+        fontWeight: "bold",
+        color: "black" ,
+        fontSize: 15,
+        marginTop: 15,
+    }
+
+    })
 
 
 export default Home;

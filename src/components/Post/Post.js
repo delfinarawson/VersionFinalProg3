@@ -82,8 +82,8 @@ class Post extends Component {
         console.log(this.props.dataPost.datos.likes)
         return (
             <View style={styles.container}>
-                <Text>{this.props.dataPost.datos.owner}</Text>
-                <Text>{this.props.dataPost.datos.textoPost}</Text>
+                <Text style={styles.owner}>{this.props.dataPost.datos.owner}</Text>
+                <Text style={styles.posteotext}>{this.props.dataPost.datos.textoPost}</Text>
                 <Text>Cantidad de Likes:{this.state.cantidadDeLikes}</Text>
                 {
                     this.state.like ?
@@ -144,6 +144,14 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignSelf: "center",
       },
+    owner: {
+        fontWeight: "bold",
+      },
+    posteotext: {
+        fontSize: 20,
+        marginBottom: 10,
+        marginTop: 10,
+    },
     formContainer: {
         paddingHorizontal: 10,
         marginTop: 20,

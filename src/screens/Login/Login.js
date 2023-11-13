@@ -33,7 +33,7 @@ class Login extends Component {
     render(){
         return(
             <View style={styles.formContainer}>
-                <Text>Login</Text>
+                <Text style={styles.titulo}>Login</Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({email: text})}
@@ -53,10 +53,10 @@ class Login extends Component {
                     <Text style={styles.textButton}>Ingresar</Text>    
                 </TouchableOpacity>
                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('Registro')}>
-                   <Text>No tengo cuenta. Registrarme.</Text>
+                   <Text style={styles.pararegistro}>No tengo cuenta. Registrarme.</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('Home')}>
-                   <Text>Volver a Home</Text>
+                   <Text style={styles.volverhome}>Volver a Home</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -76,6 +76,12 @@ const styles = StyleSheet.create({
         paddingHorizontal:10,
         marginTop: 20,
     },
+    titulo: {
+        fontWeight: "bold",
+        color: "black",
+        textAlign: "center",
+        fontSize: 35,
+    },
     input:{
         height:20,
         paddingVertical:15,
@@ -94,11 +100,23 @@ const styles = StyleSheet.create({
         borderRadius:4, 
         borderWidth:1,
         borderStyle: 'solid',
-        borderColor: '#28a745'
+        borderColor: '#28a745',
+        marginTop: 10,
     },
     textButton:{
-        color: '#fff'
-    }
+        color: '#fff',
+    },
+    volverhome: {
+        marginBottom: 10,
+        textAlign: "center",
+        fontSize: 15,
+    },
+    pararegistro: {
+        marginBottom: 10,
+        marginTop: 10,
+        textAlign: "center",
+        fontSize: 15,
+    },
 
 })
 
