@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {db, auth } from '../../firebase/config';
 import Post from '../../components/Post/Post';
-import {Image, TextInput, TouchableOpacity, ScrollView, Text, StyleSheet, FlatList} from 'react-native';
+import {Image, TextInput, TouchableOpacity, ScrollView, Text, StyleSheet, FlatList, ActionSheetIOS} from 'react-native';
 
 class perfilUsuario extends Component {
     constructor(){
@@ -13,21 +13,21 @@ class perfilUsuario extends Component {
     }
     componentDidMount(){
         console.log(this.props.data)
-       // db.collection('users').where('owner', '==', this.props.data.datos.userName).onSnapshot(
-        //    docs =>{
-         //       let users = [];
-         //       docs.forEach( doc => {
-          //          users.push({
-          //             id: doc.id,
-            //           data: doc.data()
-            //        })
-              //  this.setState({
-            //        users: users
-            //    })
-//})
-        //    }
-       // )
-      //  db.collection('posts').where('owner', '==', this.props.dataPost.datos.userName).onSnapshot(
+        db.collection('users').where('owner', '==', this.props.data.userName).onSnapshot(
+           docs =>{
+                let users = [];
+                docs.forEach( doc => {
+                   users.push({
+                       id: doc.id,
+                       data: doc.data()
+                    })
+                this.setState({
+                   users: users
+               })
+})
+           }
+        )
+      //  db.collection('posts').where('owner', '==', this.props.data.userName).onSnapshot(
       //      posteos => {
         //        let postsAMostrar = [];
 
@@ -62,7 +62,7 @@ class perfilUsuario extends Component {
             <ScrollView>
                 <Text style={styles.screenTitle}>Profile</Text>
                 <View style={styles.mainContainer}>
-                <Text>{auth.currentUser.email}</Text>
+                <Text>{ActionSheetIOS.props.data.email}</Text>
                 <FlatList 
                         data= {this.state.users}
                         keyExtractor={ user => user.id }
