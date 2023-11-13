@@ -12,8 +12,8 @@ class perfilUsuario extends Component {
         }   
     }
     componentDidMount(){
-        console.log(this.props.data)
-        db.collection('users').where('owner', '==', this.props.data.userName).onSnapshot(
+        console.log(this.dataUser)
+        db.collection('users').where('owner', '==', this.dataUser.userName).onSnapshot(
            docs =>{
                 let users = [];
                 docs.forEach( doc => {
@@ -61,8 +61,8 @@ class perfilUsuario extends Component {
         return(
             <ScrollView>
                 <Text style={styles.screenTitle}>Profile</Text>
-                <View style={styles.mainContainer}>
-                <Text>{ActionSheetIOS.props.data.email}</Text>
+                
+                
                 <FlatList 
                         data= {this.state.users}
                         keyExtractor={ user => user.id }
@@ -71,7 +71,7 @@ class perfilUsuario extends Component {
                 <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
                     <Text style={styles.textButton}>Log out</Text>
                 </TouchableOpacity>
-                </View>
+                
                 <Text style={styles.screenTitle}>My Posts</Text>
                    
                     <FlatList 
