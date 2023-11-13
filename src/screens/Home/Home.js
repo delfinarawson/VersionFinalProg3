@@ -43,19 +43,9 @@ class Home extends Component {
     render(){
         return(
             <ScrollView>
-                <TouchableOpacity onPress={ () => this.props.navigation.navigate('Filtrado')}>
-                   <Text>Filtrar Perfiles</Text>
-                </TouchableOpacity>
-                <Text style={styles.home}>HOME</Text>
                 <TouchableOpacity onPressOut={()=>this.logout()}>
                     <Text style={styles.logout}>Logout</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={ () => this.props.navigation.navigate('Mi Perfil')}>
-                   <Text style={styles.miperfil}>Mi perfil</Text>
-                </TouchableOpacity>
-
-                <Text style={styles.newpost}>Crear nuevo post</Text>
-                <PostForm />
 
                 <Text style={styles.listapost}>Lista de posteos creados</Text>
                 
