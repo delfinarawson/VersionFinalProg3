@@ -13,7 +13,7 @@ class Post extends Component {
             cantidadDeLikes: 0,
             cantidadDeComments: 0,
             comentarios: [],
-            comentarioTexto: "",
+            comentarioTexto: [],
         }
     }
 
@@ -67,7 +67,7 @@ class Post extends Component {
             comentarios: firebase.firestore.FieldValue.arrayUnion(comment)
         })
             .then(res => this.setState({
-                user: auth.currentUser.email,
+               // user: auth.currentUser.email,
                 comment: this.props.dataPost.datos.comentario,
                 //cantidadDeComments: this.props.dataPost.datos.comentarios.length
             })
@@ -81,7 +81,7 @@ class Post extends Component {
     render() {
         console.log(this.props)
         console.log(this.props.dataPost.datos.likes)
-        console.log(this.state.comment)
+        console.log(this.state.comentarioTexto)
       
         return (
             <View style={styles.container}>
@@ -103,7 +103,7 @@ class Post extends Component {
 
                 <TextInput
                     style={styles.input}
-                    onChangeText={(text) => this.setState({ comentarioTexto: text })}
+                    onChangeText={(text) => this.setState({ comentarioTexto: text  })}
                     placeholder='Comentar...'
                     keyboardType='default'
                     value={this.state.comentarioTexto}
@@ -114,15 +114,14 @@ class Post extends Component {
                 </TouchableOpacity>
                 {this.state.comentarioTexto.length > 0 ?(
                        <FlatList
-                        
                        keyExtractor={(com)=> com.id}
                        renderItem= {({item}) => (
                         <Text style={styles.commentBox}>
-                        <Text style={styles.user}>{item.author} </Text>
-                        <Text>{item.comentarioTexto}</Text>
+                         <Text>{item.comentarioTexto}</Text>
                         </Text>
                        )} 
                        />
+                      
                         ) : 
                         (<Text style={styles.sincomments}>No hay comentarios</Text>)}
 
