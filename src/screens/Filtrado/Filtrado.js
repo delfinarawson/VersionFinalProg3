@@ -78,7 +78,7 @@ class Buscador extends Component {
                         keyExtractor={(item) => item.id.toString()}
                         renderItem={({ item }) => (
                             <View>
-                                <TouchableOpacity onPress={()=> this.props.navigation.navigate("Mi Perfil")}>
+                                <TouchableOpacity onPress={(data)=> this.props.navigation.navigate("Perfil Usuario", data)}>
                                 <Text>User Name: {item.data.userName}</Text>
                                 </TouchableOpacity>
                             </View>

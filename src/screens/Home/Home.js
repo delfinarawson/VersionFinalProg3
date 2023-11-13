@@ -43,6 +43,9 @@ class Home extends Component {
     render(){
         return(
             <View>
+                <TouchableOpacity onPress={ () => this.props.navigation.navigate('Filtrado')}>
+                   <Text>Filtrar Perfiles</Text>
+                </TouchableOpacity>
                 <Text style={styles.home}>HOME</Text>
                 <TouchableOpacity onPressOut={()=>this.logout()}>
                     <Text style={styles.logout}>Logout</Text>
@@ -62,9 +65,7 @@ class Home extends Component {
                     renderItem={ ({item}) => <Post dataPost = {item} />  }
                 />
 
-                <TouchableOpacity onPress={ () => this.props.navigation.navigate('Filtrado')}>
-                   <Text>Filtrar Perfiles</Text>
-                </TouchableOpacity>
+                
             </View>
 
 
