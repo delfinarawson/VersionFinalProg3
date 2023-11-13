@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -15,18 +15,18 @@ class Menu extends Component {
     render() {
         return (
 
-    
-                                <Tab.Navigator>
-                                    <Tab.Screen options={{title: 'Home' }} name="Home" component={Home} /> 
-                                    <Tab.Screen options={{title: 'Nuevo Post'}} name="PostForm" component={PostForm}/>
-                                    <Tab.Screen options={{title: 'Mi Perfil'}} name="Mi Perfil" component={MiPerfil} />
-                                    <Tab.Screen options={{title: 'Filtrado'}} name="Filtrado" component={Filtrado} />
-                                </Tab.Navigator>
 
-                     )
-            }
-        }
-        
+            <Tab.Navigator>
+                <Tab.Screen options={{ title: 'Home' }} name="Home" component={Home} />
+                <Tab.Screen options={{ title: 'Nuevo Post' }} name="PostForm" component={PostForm} />
+                <Tab.Screen options={{ title: 'Mi Perfil' }} name="Mi Perfil" component={MiPerfil} />
+                <Tab.Screen options={{ title: 'Filtrado' }} name="Filtrado" component={Filtrado} />
+            </Tab.Navigator>
+
+        )
+    }
+}
+
 const styles = StyleSheet.create({
     loader: {
         marginTop: 200,
