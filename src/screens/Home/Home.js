@@ -47,7 +47,7 @@ class Home extends Component {
                 <TouchableOpacity onPressOut={()=>this.logout()}>
                     <Text style={styles.logout}>Logout</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={ () => this.props.navigation.navigate('Mi perfil')}>
+                <TouchableOpacity onPress={ () => this.props.navigation.navigate('Mi Perfil')}>
                    <Text style={styles.miperfil}>Mi perfil</Text>
                 </TouchableOpacity>
 

@@ -18,7 +18,7 @@ export default function App() {
       <Stack.Screen name='Home' component={Home} options={ { headerShown: false } }/>
         <Stack.Screen name='Registro' component={Register} options={ { headerShown: false } }/>
         <Stack.Screen name='Login' component={Login} options={ { headerShown: false } }/>
-        <Stack.Screen name='Mi perfil' component={MiPerfil} options={ { headerShown: false } }/>
+        <Stack.Screen name='Mi Perfil' component={MiPerfil} options={ { headerShown: false } }/>
         <Stack.Screen name='Filtrado' component={Filtrado} options={ { headerShown: false } }/>
       </Stack.Navigator>
     </NavigationContainer>
