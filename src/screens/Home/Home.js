@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList} from 'react-native';
+import {TextInput, TouchableOpacity, ScrollView, Text, StyleSheet, FlatList, View} from 'react-native';
 import { db, auth } from '../../firebase/config';
 import PostForm from '../PostForm/PostForm';
 import Post from '../../components/Post/Post'; 
@@ -42,7 +42,7 @@ class Home extends Component {
 
     render(){
         return(
-            <View>
+            <ScrollView>
                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('Filtrado')}>
                    <Text>Filtrar Perfiles</Text>
                 </TouchableOpacity>
@@ -66,7 +66,7 @@ class Home extends Component {
                 />
 
                 
-            </View>
+            </ScrollView>
 
 
         )

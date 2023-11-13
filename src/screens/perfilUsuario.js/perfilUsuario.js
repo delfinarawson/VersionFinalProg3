@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {db, auth } from '../../firebase/config';
 import Post from '../../components/Post/Post';
-import {Image, TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList} from 'react-native';
+import {Image, TextInput, TouchableOpacity, ScrollView, Text, StyleSheet, FlatList} from 'react-native';
 
 class perfilUsuario extends Component {
     constructor(){
@@ -59,7 +59,7 @@ class perfilUsuario extends Component {
     render(){
         console.log(this.state);
         return(
-            <View>
+            <ScrollView>
                 <Text style={styles.screenTitle}>Profile</Text>
                 <View style={styles.mainContainer}>
                 <Text>{auth.currentUser.email}</Text>
@@ -82,7 +82,7 @@ class perfilUsuario extends Component {
                     />
 
                 
-            </View>
+            </ScrollView>
             
         )}
         }

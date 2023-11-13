@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {db, auth } from '../../firebase/config';
-import {TextInput, TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import {TextInput, TouchableOpacity, ScrollView, Text, StyleSheet, View} from 'react-native';
 
 class PostForm extends Component {
     constructor(){
@@ -27,7 +27,7 @@ class PostForm extends Component {
 
     render(){
         return(
-            <View style={styles.formContainer}>
+            <ScrollView style={styles.formContainer}>
                 <Text>New Post</Text>
                 <TextInput
                     style={styles.input}
@@ -39,7 +39,7 @@ class PostForm extends Component {
                 <TouchableOpacity style={styles.button} onPress={()=>this.crearPost(auth.currentUser.email, this.state.textoPost, Date.now())}>
                     <Text style={styles.textButton}>Postear</Text>    
                 </TouchableOpacity>
-            </View>
+            </ScrollView>
         )
     }
 }

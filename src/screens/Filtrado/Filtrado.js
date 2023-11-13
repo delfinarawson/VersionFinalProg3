@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 import React, { Component } from 'react';
 
 import { db } from "../../firebase/config"
@@ -57,7 +57,7 @@ class Buscador extends Component {
 
     render() {
         return (
-            <View>
+            <ScrollView>
                 <TextInput
                     keyboardType='default'
                     placeholder='Buscar perfil'
@@ -85,7 +85,7 @@ class Buscador extends Component {
                         )}
                     />
                 )}
-            </View>
+            </ScrollView>
         )
     }
 }
