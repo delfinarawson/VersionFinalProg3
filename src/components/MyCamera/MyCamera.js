@@ -8,11 +8,14 @@ class MyCamera extends Component{
         super(props),
         this.state = {
             permisosDeHardware: false,
-            urlInternaFoto: '',
+            photo: '',
             mostrarLaCamara: true, //Para elegir si queremos mostrar cámara o preview de foto.
+
+            errorMensaje: '',
+            errorCode: '',
         }
         
-        this.metedosDeCamara = '' //Guardar los métodos internos de la cámara.
+        this.metodosDeCamara = '' //Guardar los métodos internos de la cámara.
 
     }
 
@@ -27,11 +30,56 @@ class MyCamera extends Component{
     }
 
     sacarFoto(){
+        this.metodosDeCamara
+            .takePictureAsync()
+            .then((photo) => {
+                console.log(photo);
+                this.setState(
+                    {
+                        photo: photo.url,
+                        showCamera: false,
+                    }
+                );
+            })
+
+            .catch((error) => {
+                console.log(error);
+                this.setState({
+                    errorMessage: error.message,
+                    errorCode: error.code,
+                })
+            })
 
     }
 
     guardarLaFotoEnStorage(){
+        fetch(this.state.photo)
+        .then((image) => res.blob())
+        const ref = storage.ref(`photos/${Date.now()}.jpg`)
+        ref.put(image)
+        .then(()=> {
+            ref.getDownloadURL()
+            .then((url) => {this.props.onImageUpload(url)
+            this.setState({
+                photo:"",
+            })
+            });
+        })
 
+        .catch((err) => {
+            console.log(err);
+            this.setState({
+                errorMessage: error.message,
+                errorCode: error.code,
+            })
+        })
+    }
+
+    clearPicture(){
+        this.setState({
+            photo: '',
+            showCamera: true, 
+        })
     }
 
 
@@ -42,7 +90,7 @@ class MyCamera extends Component{
                 <Camera
                     //style={}
                     type={ Camera.Constants.Type.front}
-                    ref={ metedosDeCamara => this.metedosDeCamara = metedosDeCamara}
+                    ref={ (metodosDeCamara) => this.metodosDeCamara = metodosDeCamara}
                 />
                 <TouchableOpacity onPress={()=>this.sacarFoto()}>
                     <Text>Sacar Foto</Text>
@@ -53,4 +101,4 @@ class MyCamera extends Component{
 
 }
 
-export default MyCamera
+export default MyCamera;

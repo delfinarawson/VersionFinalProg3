@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import {db, auth } from '../../firebase/config';
 import {TextInput, TouchableOpacity, ScrollView, Text, StyleSheet, View} from 'react-native';
 
+import MyCamera from "../../components/MyCamera/MyCamera";
+
 class PostForm extends Component {
     constructor(){
         super()
         this.state={
            textoPost:'',
+           showCamera: true,
+           url: '',
         }
     }
 
@@ -19,14 +23,24 @@ class PostForm extends Component {
             createdAt: createdAt, //Date.now(), 
             likes: [], 
             comentarios: [], 
+            photo: this.state.url,
         })
         .then( res => console.log(res))
         .catch( e => console.log(e))
     }
 
+    imageUpload(url){
+        this.setState({
+            url: url,
+            showCamera: false,
+        })
+    }
+
 
     render(){
         return(
+
+            this.state.showCamera ? ( < MyCamera onImageUpload={(url) => this.onImageUpload(url)}/> ) : (
             <ScrollView style={styles.formContainer}>
                 <Text>New Post</Text>
                 <TextInput
@@ -40,7 +54,7 @@ class PostForm extends Component {
                     <Text style={styles.textButton}>Postear</Text>    
                 </TouchableOpacity>
             </ScrollView>
-        )
+        ))
     }
 }
 
