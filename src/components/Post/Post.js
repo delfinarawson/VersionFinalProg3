@@ -13,6 +13,7 @@ class Post extends Component {
             cantidadDeLikes: 0,
             cantidadDeComments: 0,
             comentarios: [],
+            comentarioTexto: "",
         }
     }
 
@@ -66,9 +67,9 @@ class Post extends Component {
             comentarios: firebase.firestore.FieldValue.arrayUnion(comment)
         })
             .then(res => this.setState({
-                user: email,
-                comment: comentario,
-                cantidadDeComments: this.props.dataPost.datos.comentarios.length
+                user: auth.currentUser.email,
+                comment: this.props.dataPost.datos.comentario,
+                //cantidadDeComments: this.props.dataPost.datos.comentarios.length
             })
 
             )
@@ -80,6 +81,8 @@ class Post extends Component {
     render() {
         console.log(this.props)
         console.log(this.props.dataPost.datos.likes)
+        console.log(this.state.comment)
+      
         return (
             <View>
                 <Text>{this.props.dataPost.datos.owner}</Text>
@@ -109,14 +112,14 @@ class Post extends Component {
                 <TouchableOpacity style={styles.button} onPress={() => this.comment(this.state.comentarioTexto, Date.now())} >
                     <Text style={styles.textButton}>Comentar</Text>
                 </TouchableOpacity>
-                {this.state.comentarios.length > 0 ?(
+                {this.state.comentarioTexto.length > 0 ?(
                        <FlatList
-                       data = {this.state.comentarios}
+                        
                        keyExtractor={(com)=> com.id}
                        renderItem= {({item}) => (
                         <Text style={styles.commentBox}>
                         <Text style={styles.user}>{item.author} </Text>
-                        <Text>{comment}</Text>
+                        <Text>{item.comentarioTexto}</Text>
                         </Text>
                        )} 
                        />
