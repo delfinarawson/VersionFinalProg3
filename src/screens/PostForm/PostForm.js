@@ -15,12 +15,12 @@ class PostForm extends Component {
     }
 
     //1)Completar la creación de posts
-    crearPost(){
+    crearPost(owner, textoPost, createdAt){
         //Crear la colección Users
         db.collection('posts').add({
-            owner: auth.currentUser.email, //auth.currentUser.email,
-            textoPost: this.state.textoPost, //this.state.textoPost,
-            createdAt: Date.now(), //Date.now(), 
+            owner: owner, //auth.currentUser.email,
+            textoPost: textoPost, //this.state.textoPost,
+            createdAt: createdAt, //Date.now(), 
             likes: [], 
             comentarios: [], 
             photo: this.state.url,
@@ -58,7 +58,8 @@ class PostForm extends Component {
                       this.crearPost(
                         auth.currentUser.email,
                         this.state.textoPost,
-                        Date.now()
+                        Date.now(),
+                        this.state.url,
                       )
                     }
                   >
