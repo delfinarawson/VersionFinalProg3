@@ -15,12 +15,12 @@ class PostForm extends Component {
     }
 
     //1)Completar la creación de posts
-    crearPost(owner, textoPost, createdAt){
+    crearPost(){
         //Crear la colección Users
         db.collection('posts').add({
-            owner: owner, //auth.currentUser.email,
-            textoPost: textoPost, //this.state.textoPost,
-            createdAt: createdAt, //Date.now(), 
+            owner: auth.currentUser.email, //auth.currentUser.email,
+            textoPost: this.state.textoPost, //this.state.textoPost,
+            createdAt: Date.now(), //Date.now(), 
             likes: [], 
             comentarios: [], 
             photo: this.state.url,
@@ -38,23 +38,37 @@ class PostForm extends Component {
 
 
     render(){
-        return(
-
-            this.state.showCamera ? ( < MyCamera onImageUpload={(url) => this.onImageUpload(url)}/> ) : (
-            <ScrollView style={styles.formContainer}>
-                <Text>New Post</Text>
-                <TextInput
+        return (
+            <View style={styles.formContainer}>
+              <Text>New Post</Text>
+              {this.state.showCamera ? (
+                <MyCamera onImageUpload={(url) => this.onImageUpload(url)} />
+              ) : (
+                <>
+                  <TextInput
                     style={styles.input}
-                    onChangeText={(text)=>this.setState({textoPost: text})}
-                    placeholder='Escribir...'
-                    keyboardType='default'
+                    onChangeText={(text) => this.setState({ textoPost: text })}
+                    placeholder="Escribir una descripcion"
+                    keyboardType="default"
                     value={this.state.textoPost}
-                    />
-                <TouchableOpacity style={styles.button} onPress={()=>this.crearPost(auth.currentUser.email, this.state.textoPost, Date.now())}>
-                    <Text style={styles.textButton}>Postear</Text>    
-                </TouchableOpacity>
-            </ScrollView>
-        ))
+                  />
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={() =>
+                      this.crearPost(
+                        auth.currentUser.email,
+                        this.state.textoPost,
+                        Date.now()
+                      )
+                    }
+                  >
+                    <Text style={styles.textButton}>Postear</Text>
+                  </TouchableOpacity>
+                </>
+              )}
+            </View>
+          );
+          
     }
 }
 
