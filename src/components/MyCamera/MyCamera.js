@@ -36,7 +36,7 @@ class MyCamera extends Component{
                 console.log(photo);
                 this.setState(
                     {
-                        photo: photo.url,
+                        photo: photo.uri,
                         showCamera: false,
                     }
                 );
