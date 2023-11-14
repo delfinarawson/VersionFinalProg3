@@ -54,16 +54,19 @@ class MyCamera extends Component{
 
     guardarLaFotoEnStorage(){
         fetch(this.state.photo)
-        .then((image) => res.blob())
-        const ref = storage.ref(`photos/${Date.now()}.jpg`)
-        ref.put(image)
-        .then(()=> {
-            ref.getDownloadURL()
-            .then((url) => {this.props.onImageUpload(url)
-            this.setState({
-                photo:"",
-            })
-            });
+        .then((res) => res.blob())
+            .then((image) => {
+                const ref = storage.ref(`photos/${Date.now()}.jpg`)
+                ref.put(image)
+                    .then(()=> {
+                        ref.getDownloadURL()
+                        .then((url) => {this.props.onImageUpload(url)
+                        this.setState({
+                            photo:"",
+                        })
+                        });
+        })
+        
         })
 
         .catch((err) => {
@@ -86,16 +89,38 @@ class MyCamera extends Component{
     render(){
         //El return tiene que mostrar la cámara o el preview de la foto con las opciones de cancelar o confirmar.
         return(
-            <View>
-                <Camera
-                    //style={}
-                    type={ Camera.Constants.Type.front}
-                    ref={ (metodosDeCamara) => this.metodosDeCamara = metodosDeCamara}
+            <>
+                {this.state.photo ? (
+                    <>
+                        <View style={styles.camera}>
+                            <Image 
+                                style={styles.camera}
+                                source={{uri: this.state.photo}}
+                            />
+                        </View>
+                        
+                        <View>
+                            <TouchableOpacity onPress={() => this.guardarLaFotoEnStorage() }>
+                                <Text> Aceptar
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.clearPicture() }>
+                                <Text>Cancelar</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </>
+                ) : 
+                <>
+                < Camera
+                    type={Camera.Constants.Type.front}
+                    ref={(cam) => (this.camera = cam) }
                 />
-                <TouchableOpacity onPress={()=>this.sacarFoto()}>
-                    <Text>Sacar Foto</Text>
+                <TouchableOpacity onPress={() => this.sacarFoto()}>
+                    <Text> Shoot </Text>
                 </TouchableOpacity>
-            </View>
+                </>
+                }                
+            </>
         )
     }
 
