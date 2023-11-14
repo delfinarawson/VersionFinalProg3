@@ -14,7 +14,7 @@ class Home extends Component {
 
     componentDidMount(){
         //Traer los datos de Firebase y cargarlos en el estado.
-        db.collection('posts').onSnapshot(
+        db.collection('posts').orderBy('createdAt', 'desc').onSnapshot(
             listaPosts => {
                 let postsAMostrar = [];
 
