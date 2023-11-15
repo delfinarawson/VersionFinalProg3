@@ -61,6 +61,7 @@ class PostForm extends Component {
                         this.state.textoPost,
                         Date.now(),
                         this.state.url,
+                        auth.currentUser.displayName,
                       )
                     }
                   >
