@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {db, auth } from '../../firebase/config';
 import Post from '../../components/Post/Post';
-import {Image, TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList} from 'react-native';
+import {Image, TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView} from 'react-native';
 
 class MiPerfil extends Component {
     constructor(){
@@ -58,7 +58,7 @@ class MiPerfil extends Component {
     render(){
         console.log(this.state);
         return(
-            <View>
+            <ScrollView>
                 <Text style={styles.screenTitle}>Profile</Text>
                 <View style={styles.mainContainer}>
                 <Text>{auth.currentUser.email}</Text>
@@ -81,7 +81,7 @@ class MiPerfil extends Component {
                     />
 
                 
-            </View>
+            </ScrollView>
             
         )}
         }
