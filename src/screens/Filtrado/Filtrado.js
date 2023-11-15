@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, FlatList, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, FlatList, ScrollView, StyleSheet } from 'react-native';
 import React, { Component } from 'react';
 
 import { db } from "../../firebase/config"
@@ -58,16 +58,17 @@ class Buscador extends Component {
     render() {
         return (
             <ScrollView>
-                <TextInput
+                <TextInput style={styles.form}
                     keyboardType='default'
                     placeholder='Buscar perfil'
                     onChangeText={(text) => this.cambiosControl(text)}
                     value={this.state.search}
                 />
                 <TouchableOpacity
+                    style={styles.boton}
                     onPress={() => this.searchUsuarios()}
                 >
-                    <Text>Buscar</Text>
+                    <Text style={styles.textoboton}>Buscar</Text>
                 </TouchableOpacity>
 
                 {this.state.mensajeError ? (
@@ -90,4 +91,35 @@ class Buscador extends Component {
     }
 }
 
+const styles = StyleSheet.create({
+boton: {
+    backgroundColor: "orange",
+    marginHorizontal: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    textAlign: "center",
+    borderRadius: 4,
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderColor: "#fff",
+    width: '90%',
+    marginTop: 20,
+  },
+  textoboton: {
+    color: "white",
+    textAlign: "center",
+  },
+  form: {
+    marginTop: 5,
+      marginBottom: 5,
+      borderColor: 'grey',
+      borderStyle: 'solid',
+      borderWidth: 3,
+      width: '80%',
+      paddingHorizontal: 10,
+      paddingVertical: 6,
+      borderRadius: 4,
+  },
+  
+   })
 export default Buscador;

@@ -149,7 +149,8 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     textButton:{
-        color: '#fff'
+        color: '#fff',
+        textAlign: "center",
     },
     yatengocuenta: {
         marginBottom: 10,

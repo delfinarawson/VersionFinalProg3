@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     },
     textButton:{
         color: '#fff',
+        textAlign: "center",
     },
     volverhome: {
         marginBottom: 10,
