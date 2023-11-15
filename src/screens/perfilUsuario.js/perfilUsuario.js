@@ -13,7 +13,8 @@ class perfilUsuario extends Component {
     }
     componentDidMount(){
         console.log(this.dataUser)
-        db.collection('users').where('owner', '==', this.dataUser.userName).onSnapshot(
+        let perfil = this.props.route.params 
+        db.collection('users').where('owner', '==', perfil ).onSnapshot(
            docs =>{
                 let users = [];
                 docs.forEach( doc => {
@@ -27,25 +28,25 @@ class perfilUsuario extends Component {
 })
            }
         )
-      //  db.collection('posts').where('owner', '==', this.props.data.userName).onSnapshot(
-      //      posteos => {
-        //        let postsAMostrar = [];
+        db.collection('posts').where('owner', '==', perfil).onSnapshot(
+            posteos => {
+                let postsAMostrar = [];
 
-        //        posteos.forEach( unPost => {
-         //           postsAMostrar.push(
-        //                {
-        //                    id: unPost.id,
-         //                   datos: unPost.data()
-          //              }
-          //          )
-        //        })
+                posteos.forEach( unPost => {
+                    postsAMostrar.push(
+                        {
+                            id: unPost.id,
+                            datos: unPost.data()
+                        }
+                    )
+                })
 
-         //       this.setState({
-        //            listaPost: postsAMostrar
-         //       })
+                this.setState({
+                    listaPost: postsAMostrar
+                })
             }
-       // )
-   // }
+        )
+    }
 
     logout(){
         auth.signOut()
@@ -66,7 +67,7 @@ class perfilUsuario extends Component {
                 <FlatList 
                         data= {this.state.users}
                         keyExtractor={ user => user.id }
-                        renderItem={ ({item}) => <Text>Username: {item.data.username}</Text> }
+                        renderItem={ ({item}) => <Text>Username: {item.data.userName}</Text> }
                     />
                 <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
                     <Text style={styles.textButton}>Log out</Text>
