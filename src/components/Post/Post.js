@@ -85,11 +85,11 @@ class Post extends Component {
         console.log("props",this.props)
         console.log(this.props.dataPost.datos.likes)
         console.log(this.state.comentarioTexto)
-        console.log(this.props.dataPost.datos.userName)
+        
       
         return (
             <View style={styles.container}>
-                <Text style={styles.owner}>{this.props.dataPost.datos.userName}</Text>
+                <Text style={styles.owner}>{this.props.dataPost.datos.owner}</Text>
                 
                 <Image
                 style={{width: 300, height: 250 }}

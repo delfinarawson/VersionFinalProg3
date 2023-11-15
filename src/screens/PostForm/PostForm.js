@@ -24,7 +24,7 @@ class PostForm extends Component {
             likes: [], 
             comentarios: [], 
             photo: this.state.url,
-            userName: auth.currentUser.displayName
+           
         })
         .then( res => console.log(res))
         .catch( e => console.log(e))
@@ -61,7 +61,7 @@ class PostForm extends Component {
                         this.state.textoPost,
                         Date.now(),
                         this.state.url,
-                        auth.currentUser.displayName,
+                        
                       )
                     }
                   >
