@@ -57,7 +57,8 @@ class Buscador extends Component {
 
     render() {
         return (
-            <ScrollView>
+            <ScrollView style={styles.search}>
+                <View style={styles.campos}>
                 <TextInput style={styles.form}
                     keyboardType='default'
                     placeholder='Buscar perfil'
@@ -80,22 +81,40 @@ class Buscador extends Component {
                         renderItem={({ item }) => (
                             <View>
                                 <TouchableOpacity onPress={()=> this.props.navigation.navigate("Perfil Usuario", { dataUser: item.data })}>
-                                <Text>User Name: {item.data.userName}</Text>
+                                <Text style={styles.rta}>User Name:  {item.data.userName}</Text>
                                 </TouchableOpacity>
                             </View>
                         )}
                     />
                 )}
+                </View>
             </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
+search: {
+      borderColor: 'grey',
+      borderStyle: 'solid',
+      borderWidth: 1,
+      marginLeft: 50,
+      marginTop: 30,
+      marginRight: 50,
+      marginBottom: 300,
+      minHeight: 'auto',
+      backgroundColor: 'white',
+    },
+campos: {
+      alignItems: "center", 
+      marginBottom: 50,
+      padding: 10,
+      marginTop: 40,
+    },
 boton: {
     backgroundColor: "orange",
     marginHorizontal: 10,
-    paddingHorizontal: 10,
+   paddingHorizontal: 10,
     paddingVertical: 6,
     textAlign: "center",
     borderRadius: 4,
@@ -110,15 +129,19 @@ boton: {
     textAlign: "center",
   },
   form: {
-    marginTop: 5,
-      marginBottom: 5,
-      borderColor: 'grey',
-      borderStyle: 'solid',
-      borderWidth: 3,
-      width: '80%',
-      paddingHorizontal: 10,
-      paddingVertical: 6,
-      borderRadius: 4,
+    marginTop: 10,
+    marginBottom: 5,
+    borderColor: 'grey',
+    borderStyle: 'solid',
+    borderWidth: 3,
+    width: '80%',
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 4,
+  },
+  rta: {
+    marginTop: 30,
+    fontSize: 20,
   },
   
    })
