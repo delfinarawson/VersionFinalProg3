@@ -24,6 +24,7 @@ class PostForm extends Component {
             likes: [], 
             comentarios: [], 
             photo: this.state.url,
+            userName: auth.currentUser.displayName
         })
         .then( res => console.log(res))
         .catch( e => console.log(e))
