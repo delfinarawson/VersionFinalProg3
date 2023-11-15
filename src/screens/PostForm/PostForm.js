@@ -29,7 +29,7 @@ class PostForm extends Component {
         .catch( e => console.log(e))
     }
 
-    imageUpload(url){
+    onImageUpload(url){
         this.setState({
             url: url,
             showCamera: false,

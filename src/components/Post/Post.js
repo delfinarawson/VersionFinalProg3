@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList, Image } from 'react-native';
 import { db, auth } from '../../firebase/config';
 import firebase from 'firebase/app';
 
@@ -85,10 +85,17 @@ class Post extends Component {
         console.log("props",this.props)
         console.log(this.props.dataPost.datos.likes)
         console.log(this.state.comentarioTexto)
+        console.log(this.props.dataPost.datos.photo)
       
         return (
             <View style={styles.container}>
                 <Text style={styles.owner}>{this.props.dataPost.datos.owner}</Text>
+                
+                <Image
+                style={{width: 300, height: 250 }}
+                source={{ uri: this.props.dataPost.datos.photo }}
+                />
+                
                 <Text style={styles.posteotext}>{this.props.dataPost.datos.textoPost}</Text>
                 <Text>Cantidad de Likes: {this.state.cantidadDeLikes}</Text>
                 {
