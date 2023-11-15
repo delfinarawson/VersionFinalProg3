@@ -85,7 +85,7 @@ class Post extends Component {
         console.log("props",this.props)
         console.log(this.props.dataPost.datos.likes)
         console.log(this.state.comentarioTexto)
-        console.log(this.props.dataPost.datos.photo)
+        
       
         return (
             <View style={styles.container}>
