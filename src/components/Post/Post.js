@@ -191,7 +191,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderStyle: 'solid',
         borderColor: 'orange',
-        marginTop: 10,
+        marginTop: 5,
+        marginBottom: 10,
     },
     textButton: {
         color: '#fff'
