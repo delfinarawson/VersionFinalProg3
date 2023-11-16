@@ -12,8 +12,8 @@ class perfilUsuario extends Component {
         }   
     }
     componentDidMount(){
-        console.log(this.dataUser)
-        let perfil = this.props.route.params 
+        console.log(this.props.route.params)
+        let perfil = this.props.route.params.dataUser.owner 
         db.collection('users').where('owner', '==', perfil ).onSnapshot(
            docs =>{
                 let users = [];
@@ -58,7 +58,7 @@ class perfilUsuario extends Component {
     }
 
     render(){
-        console.log(this.state);
+        console.log(this.state.users);
         return(
             <ScrollView>
                 <Text style={styles.screenTitle}>Profile</Text>
