@@ -65,19 +65,18 @@ class MiPerfil extends Component {
                 <FlatList 
                         data= {this.state.users}
                         keyExtractor={ user => user.id }
-                        renderItem={ ({item}) => <Text>Username: {item.data.username}</Text> }
-                    />
-                    <FlatList 
-                        data= {this.state.users}
-                        keyExtractor={ user => user.id }
                         renderItem={ ({item}) => 
+                        <View>
+                        <Text>Username: {item.data.userName}</Text> 
                         <Image
                         style={{width: 100, height: 80 }}
                         source={{ uri: item.data.FotoPerfil}}
                         />
-                        
+                        <Text>Descripción: {item.data.ShortBio}</Text>
+                        </View>
                     }
                     />
+                    
                 <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
                     <Text style={styles.textButton}>Log out</Text>
                 </TouchableOpacity>

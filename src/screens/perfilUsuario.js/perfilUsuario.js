@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {db, auth } from '../../firebase/config';
 import Post from '../../components/Post/Post';
-import {Image, TextInput, TouchableOpacity, ScrollView, Text, StyleSheet, FlatList, ActionSheetIOS} from 'react-native';
+import {Image, TextInput, TouchableOpacity, ScrollView, Text, StyleSheet, FlatList, ActionSheetIOS, View} from 'react-native';
 
 class perfilUsuario extends Component {
     constructor(){
@@ -68,20 +68,18 @@ class perfilUsuario extends Component {
                         data= {this.state.users}
                         keyExtractor={ user => user.id }
                         renderItem={ ({item}) => 
+                        <View>
                         <Text>Username: {item.data.userName}</Text> 
-                    }
-                    />
-                    <FlatList 
-                        data= {this.state.users}
-                        keyExtractor={ user => user.id }
-                        renderItem={ ({item}) => 
                         <Image
                         style={{width: 100, height: 80 }}
                         source={{ uri: item.data.FotoPerfil}}
                         />
-                        
+                        <Text>Descripción: {item.data.ShortBio}</Text>
+                        </View>
                     }
                     />
+                   
+                    
                 <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
                     <Text style={styles.textButton}>Log out</Text>
                 </TouchableOpacity>
