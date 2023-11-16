@@ -160,6 +160,8 @@ const styles = StyleSheet.create({
       },
     owner: {
         fontWeight: "bold",
+        marginBottom: 10,
+        fontSize: 17,
       },
     posteotext: {
         fontSize: 20,

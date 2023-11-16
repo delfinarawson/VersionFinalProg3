@@ -61,7 +61,7 @@ class MiPerfil extends Component {
             <ScrollView>
                 <Text style={styles.screenTitle}>Profile</Text>
                 <View style={styles.mainContainer}>
-                <Text>{auth.currentUser.email}</Text>
+                <Text style={styles.mail}>{auth.currentUser.email}</Text>
                 <FlatList 
                         data= {this.state.users}
                         keyExtractor={ user => user.id }
@@ -132,7 +132,11 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold'
 
-    }
+    },
+    mail: {
+        fontSize: 20,
+        textAlign: 'center',
+    },
 
 })
 
