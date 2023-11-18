@@ -14,6 +14,9 @@ class Post extends Component {
             cantidadDeComments: 0,
             comentarios: [],
             comentarioTexto: [],
+            users: [],
+            listaPost: [],
+            owner: []
         }
     }
 
@@ -78,19 +81,45 @@ class Post extends Component {
 
     }
     
-    
+    componentDidMount(){
+      
+        let perfil = auth.currentUser.email
+        db.collection('users').where('owner', '==', perfil ).onSnapshot(
+           docs =>{
+                let users = [];
+                docs.forEach((doc) => {
+                    const { owner } = doc.data(); // Extraer solo el dato 'owner'
+                    users.push({
+                      id: doc.id,
+                      owner: owner,
+                    });
+                this.setState({
+                   users: users
+               })
+})
+           }
+        )
+       
+    } 
 
 
     render() {
         console.log("props",this.props)
         console.log(this.props.dataPost.datos.likes)
-        console.log(this.state.comentarioTexto)
+        console.log(this.state.owner)
+        let owners = this.state.owner
+        console.log(owners.includes(auth.currentUser.email))
         
       
         return (
             <View style={styles.container}>
                 <Text style={styles.owner}>{this.props.dataPost.datos.owner}</Text>
-                
+                {users.includes(auth.currentUser.email) ? 
+                    <TouchableOpacity>Borrar Post</TouchableOpacity> :
+                    <Text>No puedes borrar este post</Text>
+
+
+                }
                 <Image
                 style={{width: 300, height: 250 }}
                 source={{ uri: this.props.dataPost.datos.photo }}
@@ -118,6 +147,7 @@ class Post extends Component {
                     keyboardType='default'
                     value={this.state.comentarioTexto}
                 />
+            
 
                 <TouchableOpacity style={styles.button} onPress={() => this.comment(this.state.comentarioTexto, Date.now())} >
                     <Text style={styles.textButton}>Comentar</Text>
