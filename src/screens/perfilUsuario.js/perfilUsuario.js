@@ -8,7 +8,8 @@ class perfilUsuario extends Component {
         super()
         this.state={
             users: [],
-            listaPost: []
+            listaPost: [],
+            cantPosts: ""
         }   
     }
     componentDidMount(){
@@ -42,7 +43,8 @@ class perfilUsuario extends Component {
                 })
 
                 this.setState({
-                    listaPost: postsAMostrar
+                    listaPost: postsAMostrar,
+                    cantPosts: postsAMostrar.length
                 })
             }
         )
@@ -62,8 +64,7 @@ class perfilUsuario extends Component {
         return(
             <ScrollView>
                 <Text style={styles.screenTitle}>Profile</Text>
-                
-                
+                <Text>Cantidad Posts: {this.state.cantPosts}</Text>
                 <FlatList 
                         data= {this.state.users}
                         keyExtractor={ user => user.id }

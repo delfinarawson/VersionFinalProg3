@@ -8,7 +8,8 @@ class MiPerfil extends Component {
         super()
         this.state={
             users: [],
-            listaPost: []
+            listaPost: [],
+            cantPosts : ""
         }   
     }
     componentDidMount(){
@@ -40,7 +41,8 @@ class MiPerfil extends Component {
                 })
 
                 this.setState({
-                    listaPost: postsAMostrar
+                    listaPost: postsAMostrar ,
+                    cantPosts: postsAMostrar.length
                 })
             }
         )
@@ -56,12 +58,13 @@ class MiPerfil extends Component {
     }
 
     render(){
-        console.log(this.state);
+        console.log(this.state.cantPosts);
         return(
             <ScrollView>
                 <Text style={styles.screenTitle}>Profile</Text>
                 <View style={styles.mainContainer}>
                 <Text style={styles.mail}>{auth.currentUser.email}</Text>
+                <Text>Cantidad Posts: {this.state.cantPosts}</Text>
                 <FlatList 
                         data= {this.state.users}
                         keyExtractor={ user => user.id }
@@ -73,9 +76,11 @@ class MiPerfil extends Component {
                         source={{ uri: item.data.FotoPerfil}}
                         />
                         <Text>Descripción: {item.data.ShortBio}</Text>
+                        
                         </View>
                     }
                     />
+                    
                     
                 <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
                     <Text style={styles.textButton}>Log out</Text>
