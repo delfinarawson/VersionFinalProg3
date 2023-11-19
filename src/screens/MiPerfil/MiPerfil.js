@@ -11,7 +11,8 @@ class MiPerfil extends Component {
         this.state={
             users: [],
             listaPost: [],
-            cantPosts : ""
+            cantPosts : "",
+            perfilABorrar: ""
         }   
     }
     componentDidMount(){
@@ -58,6 +59,28 @@ class MiPerfil extends Component {
         })
         .catch(e => {console.log(e)})
     }
+    borrarPerfil(item){
+        db.collection('users').doc(this.state.users.id).delete()
+        .then(()=> {alert('El perfil se ha eliminado exitosamente')})
+        .catch(error => {
+            console.error("Error al eliminar el post:", error);
+            });
+    }
+
+    confirmarBorrarPerfil(item){
+        this.setState({ perfilABorrar: item});
+    }
+
+    finalBorrarPerfil(){
+        this.borrarPerfil(this.state.perfilABorrar);
+        this.setState({ perfilABorrar: null});
+        this.navigation.navigate("Log in")
+    }
+
+    noBorrarPerfil(){
+        this.setState({ perfilABorrar: null});
+    }
+
 
     render(){
         console.log(this.state.cantPosts);
@@ -70,6 +93,9 @@ class MiPerfil extends Component {
                 <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
                     <Text style={styles.textButton}>Log out <FontAwesomeIcon icon={faRightFromBracket} color={ 'white' }></FontAwesomeIcon> </Text>
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => this.confirmarBorrarPerfil()}>
+                        <Text>Borrar perfil </Text>
+                    </TouchableOpacity> 
                 <View style={styles.formContainer}>
                 <Text style={styles.mail}>{auth.currentUser.email}</Text>
                 <FlatList 
@@ -87,6 +113,7 @@ class MiPerfil extends Component {
                 </View>   
                     }
                     />
+
                     </View>
                   
                 </View>
