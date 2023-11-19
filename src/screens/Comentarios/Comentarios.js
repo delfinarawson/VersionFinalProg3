@@ -30,7 +30,7 @@ class Comentarios extends Component {
             .then(res => this.setState({
                 user: auth.currentUser.email,
                 comment: this.props.route.params.dataPost.item.comentario,
-                cantidadDeComments: this.props.route.params.dataPost.item.comentarios.length
+                //cantidadDeComments: this.props.route.params.dataPost.item.comentarios.length
             })
 
             )
@@ -66,7 +66,7 @@ class Comentarios extends Component {
                 </TouchableOpacity>
                 {this.props.route.params.dataPost.item.datos.comentarios.length > 0 ?(
                        <FlatList
-                       data = {this.props.route.params.dataPost.item.comentarios}
+                       data = {this.props.route.params.dataPost.item.datos.comentarios}
                        keyExtractor={(com)=> com.id}
                        renderItem= {({item}) => (
                         <Text style={styles.commentBox}>
