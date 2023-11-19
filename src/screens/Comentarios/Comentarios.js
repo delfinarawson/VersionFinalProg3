@@ -65,20 +65,7 @@ class Comentarios extends Component {
                     <Text style={styles.textButton}>Comentar</Text>
                 </TouchableOpacity>
                 
-                {this.route.params.dataPost.comentarios.length > 0 ?(
-                       <FlatList
-                       data = {this.props.route.params.dataPost.comentarios}
-                       keyExtractor={(com)=> com.id}
-                       renderItem= {({item}) => (
-                        <Text style={styles.commentBox}>
-                         <Text style={styles.usuariosCom}>{item.userName}: </Text>
-                         <Text >{item.texto}</Text>
-                        </Text>
-                       )} 
-                       />
-                      
-                        ) : 
-                        (<Text style={styles.sincomments}>No hay comentarios</Text>)}
+             
 
             </View>
 
