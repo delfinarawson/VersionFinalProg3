@@ -56,7 +56,7 @@ class Home extends Component {
                     keyExtractor={ unPost => unPost.id }
                     renderItem={ ({item}) => <View><Post dataPost = {item} /> 
                      <TouchableOpacity style={styles.button} onPressOut={()=>this.props.navigation.navigate("Comentarios", {dataPost: {item}})}>
-                    <Text style={styles.textButton}>Comentarios <FontAwesomeIcon icon={faRightFromBracket} color={ 'white' }/></Text>
+                    <Text style={styles.textButton}>Ver todos los comentarios <FontAwesomeIcon icon={faRightFromBracket} color={ 'white' }/></Text>
                      </TouchableOpacity>
 
                     </View>  }

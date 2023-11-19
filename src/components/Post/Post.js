@@ -65,27 +65,6 @@ class Post extends Component {
             .catch(e => console.log(e))
     }
 
-    comment(comentario, date) {
-        let comment = {
-            userName: auth.currentUser.email,
-            createdAt:date,
-            texto: comentario
-        }
-        db.collection('posts').doc(this.props.dataPost.id).update({
-            comentarios: firebase.firestore.FieldValue.arrayUnion(comment)
-        })
-            .then(res => this.setState({
-                user: auth.currentUser.email,
-                comment: this.props.dataPost.datos.comentario,
-                cantidadDeComments: this.props.dataPost.datos.comentarios.length
-            })
-
-            )
-            .catch(e => console.log(e))
-
-
-    }   
-
     borrarPost(item){
         db.collection('posts').doc(this.props.dataPost.id).delete()
         .then(()=> {alert('El post se ha eliminado exitosamente')})
@@ -170,22 +149,11 @@ class Post extends Component {
                             <Text style={styles.textButton}><FontAwesomeIcon icon={faHeart} color={ 'red' }/></Text>
                         </TouchableOpacity>
                 }
-
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(text) => this.setState({ comentarioTexto: text  })}
-                    placeholder='Comentar...'
-                    keyboardType='default'
-                    value={this.state.comentarioTexto}
-                />
-            
-
-                <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate("Comentarios", {comentarioTexto: this.state.comentarioTexto, date: Date.now(), navigation: navigation})}>
-                    <Text style={styles.textButton}>Ver {this.state.cantidadDeComments}</Text>
-                </TouchableOpacity>
+                    <Text>Comentarios: {this.props.dataPost.datos.comentarios.length}</Text>
+              
                 {this.props.dataPost.datos.comentarios.length > 0 ?(
                        <FlatList
-                       data = {this.props.dataPost.datos.comentarios}
+                       data = {this.props.dataPost.datos.comentarios.slice(0,4)}
                        keyExtractor={(com)=> com.id}
                        renderItem= {({item}) => (
                         <Text style={styles.commentBox}>
