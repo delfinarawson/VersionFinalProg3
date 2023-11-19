@@ -113,7 +113,7 @@ adentro: {
       marginTop: 40,
     },
 boton: {
-    backgroundColor: "orange",
+    backgroundColor: "blue",
     marginHorizontal: 10,
    paddingHorizontal: 10,
     paddingVertical: 6,
@@ -124,10 +124,17 @@ boton: {
     borderColor: "#fff",
     width: '90%',
     marginTop: 20,
+    borderWidth: 2,
+    borderRadius: 30,
+    marginLeft: 90,
+    marginTop: 30,
+    marginRight: 90,
+    marginBottom: 300,
   },
   textoboton: {
     color: "white",
     textAlign: "center",
+    fontWeight: 'bold',
   },
   form: {
     marginTop: 10,

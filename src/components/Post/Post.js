@@ -4,7 +4,7 @@ import { db, auth } from '../../firebase/config';
 import firebase from 'firebase/app';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {faHeart} from '@fortawesome/free-solid-svg-icons/faHeart';
-import { useNavigation } from '@react-navigation/native';
+import {faTrash} from '@fortawesome/free-solid-svg-icons/faTrash';
 
 class Post extends Component {
 
@@ -96,45 +96,12 @@ class Post extends Component {
       
         return (
             <View style={styles.container}>
-               
-                {
-                    auth.currentUser.email === this.props.dataPost.datos.owner ?
-                    
-                    <>
-
-                    <TouchableOpacity  onPress={() => this.confirmarBorrarPost()}>
-                        <Text style={styles.borrarp}> Borrar Post </Text>
-                    </TouchableOpacity> 
-                    
-                    <Modal animation="slide" transparent={true} visible={this.state.modalVisible}>
-
-                    
-
-                        <View style={styles.centeredView}>
-                        <View>
-                        <Text> ¿Estas seguro de que quieres eliminar este posteo?</Text>
-
-                        <TouchableOpacity onPress={()=> this.finalBorrarPost()}>
-                            <Text>Aceptar</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={()=> this.noBorrarPost()}>
-                            <Text>Cancelar</Text>
-                        </TouchableOpacity>
-                        </View>
-                        </View>
-
-                    </Modal>
-                    </>
-                    : 
-                    null
-                }
 
                 <Image
                 style={{width: 300, height: 250 }}
                 source={{ uri: this.props.dataPost.datos.photo }}
                 />
-                
+
                 <Text style={styles.posteotext}>{this.props.dataPost.datos.textoPost}</Text>
                 <Text>Cantidad de Likes: {this.state.cantidadDeLikes}</Text>
                 {
@@ -145,8 +112,8 @@ class Post extends Component {
 
                         :
 
-                        <TouchableOpacity style={styles.button} onPress={() => this.likear()} >
-                            <Text style={styles.textButton}><FontAwesomeIcon icon={faHeart} color={ 'red' }/></Text>
+                        <TouchableOpacity style={styles.buttonHeart} onPress={() => this.likear()} >
+                            <Text style={styles.textButton}><FontAwesomeIcon icon={faHeart} color={ 'white' }/></Text>
                         </TouchableOpacity>
                 }
                     <Text>Comentarios: {this.props.dataPost.datos.comentarios.length}</Text>
@@ -165,6 +132,43 @@ class Post extends Component {
                       
                         ) : 
                         (<Text style={styles.sincomments}>No hay comentarios</Text>)}
+               
+                {
+                    auth.currentUser.email === this.props.dataPost.datos.owner ?
+                    
+                    <>
+
+                    <TouchableOpacity style={styles.button} onPress={() => this.confirmarBorrarPost()}>
+                        <Text><FontAwesomeIcon icon={faTrash} color = {'white'}/> </Text>
+                    </TouchableOpacity> 
+                    
+                    <Modal animation="slide" transparent={true} visible={this.state.modalVisible}>
+
+                    
+
+                        
+                        <View style={styles.chequeo}>
+                        <Text> ¿Estas seguro de que quieres eliminar este posteo?</Text>
+
+                        <TouchableOpacity style={styles.button} onPress={()=> this.finalBorrarPost() }>
+                            <Text style={styles.textButton}>Aceptar</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.button} onPress={()=> this.noBorrarPost()}>
+                            <Text style={styles.textButton}>Cancelar</Text>
+                        </TouchableOpacity>
+                        </View>
+                        
+
+                    </Modal>
+                    </>
+                    : 
+                    null
+                }
+
+                
+                
+                
 
 
             </View>
@@ -212,16 +216,16 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     button: {
-        backgroundColor: 'orange',
+        backgroundColor: 'blue',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius: 4,
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor: 'orange',
         marginTop: 5,
         marginBottom: 10,
+        borderColor: 'white',
     },
     textButton: {
         color: '#fff'
@@ -231,7 +235,31 @@ const styles = StyleSheet.create({
     },
     usuariosCom:{
         fontWeight: "bold",
-    }
+    },
+    chequeo: {
+        position: 'absolute',
+        width: 300,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+        padding: 20,
+        zIndex: 1, // Asegura que el cartel esté encima de los demás elementos
+    },
+    buttonHeart: {
+        backgroundColor: 'blue',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius: 4,
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: '#ccc',
+        marginTop: 5,
+        marginBottom: 10,
+    },
+    
+
 })
 
 export default Post;

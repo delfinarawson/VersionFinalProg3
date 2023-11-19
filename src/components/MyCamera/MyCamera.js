@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import {Camera} from 'expo-camera'
 import { Text, StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import { storage } from "../../firebase/config";
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {faCamera} from '@fortawesome/free-solid-svg-icons/faCamera';
 
 
 
@@ -73,7 +75,7 @@ class MyCamera extends Component {
                         style={styles.button}
                          onPress={() => this.takePicture()}
                         >
-                        <Text style={styles.textButton}>Sacar foto</Text>
+                        <Text style={styles.textButton}><FontAwesomeIcon icon={faCamera} color = {'white'}/>  Sacar foto</Text>
                     </TouchableOpacity>
                 </View>
                 :
@@ -127,10 +129,10 @@ const styles = StyleSheet.create({
       borderRadius: 4,
       borderWidth: 1,
       borderStyle: "solid",
-      borderColor: "#28a745",
     },
     textButton: {
       color: "#fff",
+      fontWeight: 'bold',
     },
   });
 

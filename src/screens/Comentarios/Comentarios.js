@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList, Modal, Image } from 'react-native';
 import { db, auth } from '../../firebase/config';
 import firebase from 'firebase/app';
+import { faBold } from '@fortawesome/free-solid-svg-icons';
 
 class Comentarios extends Component {
 
@@ -48,7 +49,7 @@ class Comentarios extends Component {
       console.log(this.props.route.params.dataPost)
         return (
             <View style={styles.container}>
-                <Text style={styles.owner}>Este posteo es de:{this.props.route.params.dataPost.item.datos.owner}</Text>
+                <Text style={styles.owner}>Posteo es de: {this.props.route.params.dataPost.item.datos.owner}</Text>
                 <Image
                 style={{width: 300, height: 250 }}
                 source={{ uri: this.props.route.params.dataPost.item.datos.photo }}
@@ -129,19 +130,19 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     button: {
-        backgroundColor: 'orange',
+        backgroundColor: 'blue',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius: 4,
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor: 'orange',
         marginTop: 5,
         marginBottom: 10,
     },
     textButton: {
-        color: '#fff'
+        color: '#fff',
+        fontWeight: 'bold'
     },
     sincomments: {
         marginTop: 10,

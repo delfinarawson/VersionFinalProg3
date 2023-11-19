@@ -64,7 +64,7 @@ class MiPerfil extends Component {
         return(
             <ScrollView>
 
-                <Text style={styles.screenTitle}>Profile</Text>
+                <Text style={styles.screenTitle}>Mis Datos</Text>
                 
                 <View>
                 <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginLeft: 20,
         marginVertical: 10,
+        color: 'blue',
     },
     image: {
         alignSelf: 'center',
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
         marginEnd: 55,
         height:30,
         width: 150,
-        backgroundColor:'#46627f',
+        backgroundColor:'blue',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',

@@ -5,6 +5,7 @@ import PostForm from '../PostForm/PostForm';
 import Post from '../../components/Post/Post';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {faRightFromBracket} from '@fortawesome/free-solid-svg-icons/faRightFromBracket'; 
+import {faComment} from '@fortawesome/free-solid-svg-icons/faComment'; 
 
 class Home extends Component {
     constructor(){
@@ -51,7 +52,7 @@ class Home extends Component {
                     <Text style={styles.textButton}>Log out <FontAwesomeIcon icon={faRightFromBracket} color={ 'white' }/></Text>
                 </TouchableOpacity>
                 
-                <Text style={styles.listapost}>Lista de posteos creados</Text>
+                <Text style={styles.listapost}>Feed de posteos creados</Text>
                 
                 <FlatList 
                     
@@ -63,7 +64,7 @@ class Home extends Component {
                                 </TouchableOpacity>
                         <Post dataPost = {item} /> 
                      <TouchableOpacity style={styles.button} onPressOut={()=>this.props.navigation.navigate("Comentarios", {dataPost: {item}})}>
-                    <Text style={styles.textButton}>Ver todos los comentarios <FontAwesomeIcon icon={faRightFromBracket} color={ 'white' }/></Text>
+                    <Text style={styles.textButton}>Ir a comentar <FontAwesomeIcon icon={faComment} color={ 'white' }/></Text>
                      </TouchableOpacity>
 
                     </View>  }
@@ -81,7 +82,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
     listapost: { 
         fontWeight: "bold",
-        color: "black",
+        color: "blue",
         textAlign: "center",
         fontSize: 20,
         marginTop: 30,
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
         marginEnd: 55,
         height:30,
         width: 150,
-        backgroundColor:'#46627f',
+        backgroundColor:'blue',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
