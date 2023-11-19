@@ -9,7 +9,10 @@ class Login extends Component {
             email:'',
             password:'',
             logged: '',
-            cargando: ''
+            cargando: '',
+            errorMessage: '',
+            errorCode: '',
+            error: '',
         }
     }
 
@@ -31,6 +34,9 @@ class Login extends Component {
     }
 
     login (email, pass){
+        if( email === '' || pass === ''){
+            alert('No puede quedar ningún campo vacío')
+        } else  {
         auth.signInWithEmailAndPassword(email, pass)
             .then( response => {
                 //Cuando firebase responde sin error
@@ -49,7 +55,7 @@ class Login extends Component {
             })
 
             
-    }
+    }}
 
     render(){
         return(
@@ -73,12 +79,13 @@ class Login extends Component {
                 <TouchableOpacity style={styles.button} onPress={()=>this.login(this.state.email, this.state.password)}>
                     <Text style={styles.textButton}>Ingresar</Text>    
                 </TouchableOpacity>
+
+            
+
                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('Registro')}>
                    <Text style={styles.pararegistro}>No tengo cuenta. Registrarme.</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={ () => this.props.navigation.navigate('Menu')}>
-                   <Text style={styles.volverhome}>Ir a Home</Text>
-                </TouchableOpacity>
+                
             </View>
         )
     }
@@ -139,7 +146,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 15,
     },
-
+    
 })
 
 

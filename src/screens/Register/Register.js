@@ -11,7 +11,7 @@ class Register extends Component {
             userName:'',
             ShortBio: '',
             FotoPerfil: '',
-            password:''
+            password:'',
         }
     }
 
@@ -30,7 +30,11 @@ class Register extends Component {
     }
 
     register (email, pass, userName, date, bio, foto ){
+        if( email === '' || pass === '' || userName === '' || date === '' || bio === '' || foto === ''){
+            alert('No puede quedar ningún campo vacío')
+        } else {
         auth.createUserWithEmailAndPassword(email, pass)
+        
             .then( response => {
                 //Cuando firebase responde sin error
                 console.log('Registrado ok', response);
@@ -50,9 +54,8 @@ class Register extends Component {
             .catch( error => {
                 //Cuando Firebase responde con un error
                 console.log(error);
-
             })
-        
+        }
     }
 
     render(){
@@ -98,6 +101,7 @@ class Register extends Component {
                 <TouchableOpacity style={styles.button} onPress={()=>this.register(this.state.email, this.state.password, this.state.userName, Date.now(), this.state.ShortBio, this.state.FotoPerfil)}>
                     <Text style={styles.textButton}>Registrarse</Text>    
                 </TouchableOpacity>
+
                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('Login')}>
                    <Text style={styles.yatengocuenta}>Ya tengo cuenta. Ir al login</Text>
                 </TouchableOpacity>
@@ -157,7 +161,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         textAlign: "center",
         fontSize: 15,
-    }
+    },
 
 })
 
