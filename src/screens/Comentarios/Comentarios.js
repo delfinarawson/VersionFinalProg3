@@ -24,13 +24,13 @@ class Comentarios extends Component {
             createdAt:date,
             texto: comentario
         }
-        db.collection('posts').doc(this.props.dataPost.id).update({
+        db.collection('posts').doc(this.props.route.params.dataPost.item.id).update({
             comentarios: firebase.firestore.FieldValue.arrayUnion(comment)
         })
             .then(res => this.setState({
                 user: auth.currentUser.email,
-                comment: this.props.route.params.dataPost.comentario,
-                cantidadDeComments: this.props.route.params.dataPost.dataPost.comentarios.length
+                comment: this.props.route.params.dataPost.item.comentario,
+                cantidadDeComments: this.props.route.params.dataPost.item.comentarios.length
             })
 
             )
@@ -45,13 +45,13 @@ class Comentarios extends Component {
 
 
     render() {
-      
+      console.log(this.props.route.params.dataPost)
         return (
             <View style={styles.container}>
-                <Text style={styles.owner}>Este posteo es de:{this.props.route.params.dataPost.owner}</Text>
+                <Text style={styles.owner}>Este posteo es de:{this.props.route.params.dataPost.item.datos.owner}</Text>
                 <Image
                 style={{width: 300, height: 250 }}
-                source={{ uri: this.props.route.params.dataPost.photo }}
+                source={{ uri: this.props.route.params.dataPost.item.datos.photo }}
                 />
                 <TextInput
                     style={styles.input}
@@ -64,9 +64,20 @@ class Comentarios extends Component {
                 <TouchableOpacity style={styles.button} onPress={() => this.comment(this.state.comentarioTexto, Date.now())} >
                     <Text style={styles.textButton}>Comentar</Text>
                 </TouchableOpacity>
-                
-             
-
+                {this.props.route.params.dataPost.item.datos.comentarios.length > 0 ?(
+                       <FlatList
+                       data = {this.props.route.params.dataPost.item.comentarios}
+                       keyExtractor={(com)=> com.id}
+                       renderItem= {({item}) => (
+                        <Text style={styles.commentBox}>
+                         <Text style={styles.usuariosCom}>{item.userName}: </Text>
+                         <Text >{item.texto}</Text>
+                        </Text>
+                       )} 
+                       />
+                      
+                        ) : 
+                        (<Text style={styles.sincomments}>No hay comentarios</Text>)}
             </View>
 
         )
