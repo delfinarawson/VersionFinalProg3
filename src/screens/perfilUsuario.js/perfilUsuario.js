@@ -64,28 +64,31 @@ class perfilUsuario extends Component {
         return(
             <ScrollView>
                 <Text style={styles.screenTitle}>Profile</Text>
-                <Text>Cantidad Posts: {this.state.cantPosts}</Text>
+                <TouchableOpacity style={styles.button} onPress={ () => this.props.navigation.navigate('Menu')}>
+                   <Text style={styles.textButton}>Volver Atras</Text>
+                </TouchableOpacity>
+                <View style={styles.formContainer}>
                 <FlatList 
                         data= {this.state.users}
                         keyExtractor={ user => user.id }
                         renderItem={ ({item}) => 
                         <View>
-                        <Text>Username: {item.data.userName}</Text> 
-                        <Image
-                        style={{width: 100, height: 80 }}
+                         <Image
+                        style={styles.imgperfil}
+                        //style={{width: 100, height: 80}}
                         source={{ uri: item.data.FotoPerfil}}
                         />
-                        <Text>Descripción: {item.data.ShortBio}</Text>
+                        <Text style={styles.usern}>Username: {item.data.userName}</Text> 
+                        <Text style={styles.bio}>Descripción: {item.data.ShortBio}</Text>
+                        <Text style={styles.cantp}>Cantidad Posts: {this.state.cantPosts}</Text>
                         </View>
                     }
                     />
+                   </View>
                    
                     
-                <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
-                    <Text style={styles.textButton}>Log out</Text>
-                </TouchableOpacity>
                 
-                <Text style={styles.screenTitle}>My Posts</Text>
+                <Text style={styles.screenTitle}>Posts</Text>
                    
                     <FlatList 
                         data= {this.state.listaPost}
@@ -102,11 +105,47 @@ class perfilUsuario extends Component {
 
 const styles = StyleSheet.create({
     //CONTENEDOR GENERAL
+    formContainer:{
+        borderColor: 'grey',
+        borderStyle: 'solid',
+        borderWidth: 3,
+        marginLeft: 50,
+        marginTop: 50,
+        marginRight: 50,
+        borderRadius: 30,
+        backgroundColor: 'white',
+        paddingHorizontal:10,
+        marginTop: 20,
+        marginBottom: 20,
+    },
+    cantp: {
+        textAlign: "center",
+        fontSize: 20,
+        marginBottom: 15,
+    },
+    usern: {
+        textAlign: "center",
+        fontSize: 20,
+        marginBottom: 15,
+        marginTop: 15,
+    },
+    bio: {
+        textAlign: "center",
+        fontSize: 20,
+        marginBottom: 15,
+    },
+    imgperfil: {
+        width: 100, 
+        height: 100,
+        marginTop: 15,
+        alignSelf: 'center',
+    },
     screenTitle: {
         fontSize: 30,
         fontWeight: 'bold',
         marginLeft: 20,
-        marginVertical: 10
+        marginVertical: 10,
+        textAlign: "center",
     },
     image: {
         alignSelf: 'center',
