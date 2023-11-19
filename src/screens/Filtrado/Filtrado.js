@@ -59,7 +59,8 @@ class Buscador extends Component {
 
     render() {
         return (
-            <ScrollView style={styles.busqueda}>
+            
+            <>
                 <View style={styles.adentro}>
                 <TextInput style={styles.form}
                     keyboardType='default'
@@ -71,17 +72,21 @@ class Buscador extends Component {
                     style={styles.boton}
                     onPress={() => this.searchUsuarios()}
                 >
-                    <Text style={styles.textoboton}>Buscar <FontAwesomeIcon icon={faMagnifyingGlass} color={ 'white' }/></Text>
+                    <Text style={styles.textoBoton}>Buscar <FontAwesomeIcon icon={faMagnifyingGlass} color={ 'white' }/></Text>
                 </TouchableOpacity>
+                </View>
+                
 
                 {this.state.mensajeError ? (
                     <Text>{this.state.mensajeError}</Text>
                 ) : (
+                    
                     <FlatList
                         data={this.state.resultadosBusqueda}
                         keyExtractor={(item) => item.id.toString()}
                         renderItem={({ item }) => (
                             <View>
+                                <Text style={styles.rtaTitle}>Resultados: </Text>
                                 <TouchableOpacity onPress={()=> this.props.navigation.navigate("Perfil Usuario", { dataUser: item.data })}>
                                 <Text style={styles.rta}>User Name:  {item.data.userName}</Text>
                                 </TouchableOpacity>
@@ -89,8 +94,8 @@ class Buscador extends Component {
                         )}
                     />
                 )}
-                </View>
-            </ScrollView>
+                
+                </>
         )
     }
 }
@@ -109,7 +114,7 @@ busqueda: {
     },
 adentro: {
       alignItems: "center", 
-      marginBottom: 50,
+      marginBottom: 10,
       marginTop: 40,
     },
 boton: {
@@ -129,9 +134,9 @@ boton: {
     marginLeft: 90,
     marginTop: 30,
     marginRight: 90,
-    marginBottom: 300,
+    marginBottom: 100,
   },
-  textoboton: {
+  textoBoton: {
     color: "white",
     textAlign: "center",
     fontWeight: 'bold',
@@ -148,9 +153,15 @@ boton: {
     borderRadius: 4,
   },
   rta: {
-    marginTop: 30,
-    fontSize: 20,
+    fontSize: 15,
+    paddingLeft: 50,
   },
+  rtaTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    paddingLeft: 50,
+    paddingBottom: 20,
+  }
   
    })
 export default Buscador;

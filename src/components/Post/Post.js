@@ -149,7 +149,7 @@ class Post extends Component {
                     <>
 
                     <TouchableOpacity style={styles.button} onPress={() => this.confirmarBorrarPost()}>
-                        <Text><FontAwesomeIcon icon={faTrash} color = {'red'}/> </Text>
+                        <Text style={styles.trash}>Borrar post <FontAwesomeIcon icon={faTrash} color = {'red'}/> </Text>
                     </TouchableOpacity> 
                     
                     <Modal animation="slide" transparent={true} visible={this.state.modalVisible}>
@@ -268,6 +268,10 @@ const styles = StyleSheet.create({
     },
     commentFlatlist: {
         paddingTop: 20,
+    },
+    trash: {
+        paddingTop: 15,
+        paddingLeft: 190,
     }
 
     
