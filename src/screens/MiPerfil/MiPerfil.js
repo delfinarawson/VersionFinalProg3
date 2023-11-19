@@ -61,8 +61,10 @@ class MiPerfil extends Component {
         console.log(this.state.cantPosts);
         return(
             <ScrollView>
+
                 <Text style={styles.screenTitle}>Profile</Text>
-                <View style={styles.mainContainer}>
+                
+                <View>
                 <Text style={styles.mail}>{auth.currentUser.email}</Text>
                 <Text>Cantidad Posts: {this.state.cantPosts}</Text>
                 <FlatList 
@@ -76,10 +78,12 @@ class MiPerfil extends Component {
                         source={{ uri: item.data.FotoPerfil}}
                         />
                         <Text>Descripción: {item.data.ShortBio}</Text>
+                </View>
                         
-                        </View>
                     }
                     />
+                  
+                    
                     
                     
                 <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
