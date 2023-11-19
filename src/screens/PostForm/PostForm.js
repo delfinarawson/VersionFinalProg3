@@ -61,11 +61,12 @@ class PostForm extends Component {
                         this.state.textoPost,
                         Date.now(),
                         this.state.url,
+                        this.props.navigation.navigate('Home')
                         
                       )
                     }
                   >
-                    <Text style={styles.textButton}>Postear</Text>
+                    <Text style={styles.textButton} >Postear</Text>
                   </TouchableOpacity>
                 </>
               )}

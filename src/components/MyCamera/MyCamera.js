@@ -93,7 +93,7 @@ class MyCamera extends Component {
                     </TouchableOpacity>
                 </View>
                 :
-                <Text>No me diste los permisos de la camara</Text>
+                alert('Asegurate de tener los permisos de la camara')
                 }
             </>
         )

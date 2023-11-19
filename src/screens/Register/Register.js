@@ -98,10 +98,11 @@ class Register extends Component {
                     keyboardType='default'
                     value={this.state.FotoPerfil}
                 />
+                
                 <TouchableOpacity style={styles.button} onPress={()=>this.register(this.state.email, this.state.password, this.state.userName, Date.now(), this.state.ShortBio, this.state.FotoPerfil)}>
                     <Text style={styles.textButton}>Registrarse</Text>    
                 </TouchableOpacity>
-
+                 
                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('Login')}>
                    <Text style={styles.yatengocuenta}>Ya tengo cuenta. Ir al login</Text>
                 </TouchableOpacity>
