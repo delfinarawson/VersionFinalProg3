@@ -67,6 +67,7 @@ class perfilUsuario extends Component {
                 <TouchableOpacity style={styles.button} onPress={ () => this.props.navigation.navigate('Menu')}>
                    <Text style={styles.textButton}> Volver Atras</Text>
                 </TouchableOpacity>
+                {this.state.users.length > 0 ? 
                 <View style={styles.formContainer}>
                 <FlatList 
                         data= {this.state.users}
@@ -83,18 +84,19 @@ class perfilUsuario extends Component {
                         </View>
                     }
                     />
+                     <Text style={styles.screenTitle}>Posts</Text>
+                   
+                   <FlatList 
+                       data= {this.state.listaPost}
+                       keyExtractor={ unPost => unPost.id }
+                       renderItem={ ({item}) => <Post dataPost = { item }/> }
+                       style= {styles.listaPosts}
+                   /> 
                    </View>
-                   
-                    
+                     : (
+                        <Text style={styles.deletedProfileText}>El perfil ha sido eliminado</Text>
+                      )}
                 
-                <Text style={styles.screenTitle}>Posts</Text>
-                   
-                    <FlatList 
-                        data= {this.state.listaPost}
-                        keyExtractor={ unPost => unPost.id }
-                        renderItem={ ({item}) => <Post dataPost = { item }/> }
-                        style= {styles.listaPosts}
-                    />
 
                 
             </ScrollView>
