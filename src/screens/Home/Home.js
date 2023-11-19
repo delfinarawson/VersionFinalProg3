@@ -60,7 +60,7 @@ class Home extends Component {
                     keyExtractor={ unPost => unPost.id }
                     renderItem={ ({item}) => <View style={styles.container}>
                          <TouchableOpacity onPress={()=> this.props.navigation.navigate("Perfil Usuario", { dataUser: item.datos })}>
-                         <Text style={styles.owner}>User Name: {item.datos.owner} </Text>
+                         <Text style={styles.owner}>{item.datos.owner} </Text>
                                 </TouchableOpacity>
                         <Post dataPost = {item} /> 
                      <TouchableOpacity style={styles.button} onPressOut={()=>this.props.navigation.navigate("Comentarios", {dataPost: {item}})}>

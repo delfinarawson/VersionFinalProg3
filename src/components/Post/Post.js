@@ -5,6 +5,7 @@ import firebase from 'firebase/app';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {faHeart} from '@fortawesome/free-solid-svg-icons/faHeart';
 import {faTrash} from '@fortawesome/free-solid-svg-icons/faTrash';
+import {faComment} from '@fortawesome/free-solid-svg-icons/faComment';
 
 class Post extends Component {
 
@@ -102,24 +103,31 @@ class Post extends Component {
                 source={{ uri: this.props.dataPost.datos.photo }}
                 />
 
+
                 <Text style={styles.posteotext}>{this.props.dataPost.datos.textoPost}</Text>
-                <Text>Cantidad de Likes: {this.state.cantidadDeLikes}</Text>
+                
+                <View style={styles.contenedorLike}>
                 {
                     this.state.like ?
-                        <TouchableOpacity style={styles.button} onPress={() => this.unlike()}>
-                            <Text style={styles.textButton}>unLike</Text>
+                        <TouchableOpacity style={styles.buttonHeart} onPress={() => this.unlike()}>
+                            <Text style={styles.textButton}><FontAwesomeIcon icon={faHeart} color={ 'red' }/></Text><Text>{this.state.cantidadDeLikes} Likes</Text>
                         </TouchableOpacity>
 
                         :
 
                         <TouchableOpacity style={styles.buttonHeart} onPress={() => this.likear()} >
-                            <Text style={styles.textButton}><FontAwesomeIcon icon={faHeart} color={ 'white' }/></Text>
+                            <Text style={styles.textButton}><FontAwesomeIcon icon={faHeart}/></Text><Text>{this.state.cantidadDeLikes} Likes</Text>
                         </TouchableOpacity>
                 }
-                    <Text>Comentarios: {this.props.dataPost.datos.comentarios.length}</Text>
+                </View>
+
+
+                
+
+                    <Text><FontAwesomeIcon icon={faComment} /> {this.props.dataPost.datos.comentarios.length} Comentarios</Text>
               
                 {this.props.dataPost.datos.comentarios.length > 0 ?(
-                       <FlatList
+                       <FlatList style = {styles.commentFlatlist}
                        data = {this.props.dataPost.datos.comentarios.slice(0,4)}
                        keyExtractor={(com)=> com.id}
                        renderItem= {({item}) => (
@@ -132,6 +140,8 @@ class Post extends Component {
                       
                         ) : 
                         (<Text style={styles.sincomments}>No hay comentarios</Text>)}
+                
+                
                
                 {
                     auth.currentUser.email === this.props.dataPost.datos.owner ?
@@ -139,7 +149,7 @@ class Post extends Component {
                     <>
 
                     <TouchableOpacity style={styles.button} onPress={() => this.confirmarBorrarPost()}>
-                        <Text><FontAwesomeIcon icon={faTrash} color = {'white'}/> </Text>
+                        <Text><FontAwesomeIcon icon={faTrash} color = {'red'}/> </Text>
                     </TouchableOpacity> 
                     
                     <Modal animation="slide" transparent={true} visible={this.state.modalVisible}>
@@ -151,11 +161,11 @@ class Post extends Component {
                         <Text> ¿Estas seguro de que quieres eliminar este posteo?</Text>
 
                         <TouchableOpacity style={styles.button} onPress={()=> this.finalBorrarPost() }>
-                            <Text style={styles.textButton}>Aceptar</Text>
+                            <Text style={styles.textButtonDelete}>Aceptar</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.button} onPress={()=> this.noBorrarPost()}>
-                            <Text style={styles.textButton}>Cancelar</Text>
+                            <Text style={styles.textButtonDelete}>Cancelar</Text>
                         </TouchableOpacity>
                         </View>
                         
@@ -165,7 +175,6 @@ class Post extends Component {
                     : 
                     null
                 }
-
                 
                 
                 
@@ -180,13 +189,13 @@ class Post extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: "center",
-        padding: 30,
-        flex: 2,
-        display: "flex",
-        marginBottom: 2,
+        height: `60vh`,
+        widht: `100vw`,
+        margin: 10,
+        padding: 10,
+        backgroundColor: '#fff',
         borderRadius: 10,
-        alignSelf: "center",
+        shadowColor: '#000',
       },
       borrarp: {
         marginBottom: 10,
@@ -201,10 +210,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginTop: 10,
     },
-    formContainer: {
-        paddingHorizontal: 10,
-        marginTop: 20,
-    },
+    
     input: {
         height: 20,
         paddingVertical: 15,
@@ -216,7 +222,6 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     button: {
-        backgroundColor: 'blue',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
@@ -247,17 +252,24 @@ const styles = StyleSheet.create({
         zIndex: 1, // Asegura que el cartel esté encima de los demás elementos
     },
     buttonHeart: {
-        backgroundColor: 'blue',
+        backgroundColor: 'white',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius: 4,
         borderWidth: 1,
-        borderStyle: 'solid',
-        borderColor: '#ccc',
         marginTop: 5,
         marginBottom: 10,
+        borderStyle: 'none',
     },
+    contenedorLike: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    commentFlatlist: {
+        paddingTop: 20,
+    }
+
     
 
 })
