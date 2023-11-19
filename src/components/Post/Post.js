@@ -79,47 +79,37 @@ class Post extends Component {
             .catch(e => console.log(e))
 
 
+    }   
+    deleteP(postId){
+        db.collection('posts').doc(postId).delete()
+            .then(() => {
+            console.log("Post eliminado exitosamente");
+            //this.props.updateHome();
+            })
+            .catch(error => {
+            console.error("Error al eliminar el post:", error);
+            });
     }
-    
-    componentDidMount(){
-      
-        let perfil = auth.currentUser.email
-        db.collection('users').where('owner', '==', perfil ).onSnapshot(
-           docs =>{
-                let users = [];
-                docs.forEach((doc) => {
-                    const { owner } = doc.data(); // Extraer solo el dato 'owner'
-                    users.push({
-                      id: doc.id,
-                      owner: owner,
-                    });
-                this.setState({
-                   users: users
-               })
-})
-           }
-        )
-       
-    } 
 
 
     render() {
         console.log("props",this.props)
         console.log(this.props.dataPost.datos.likes)
-        console.log(this.state.owner)
-        let owners = this.state.owner
-        console.log(owners.includes(auth.currentUser.email))
+        console.log(this.props.dataPost.datos.owner)
+       
         
       
         return (
             <View style={styles.container}>
                 <Text style={styles.owner}>{this.props.dataPost.datos.owner}</Text>
-                {users.includes(auth.currentUser.email) ? 
-                    <TouchableOpacity>Borrar Post</TouchableOpacity> :
-                    <Text>No puedes borrar este post</Text>
-
-
+                {
+                    auth.currentUser.email === this.props.dataPost.datos.owner ?
+                    <TouchableOpacity  onPress={() => this.deleteP(this.props.dataPost.datos.id)}>
+                        <Text> Borrar Post </Text>
+                    </TouchableOpacity> : 
+                    null
                 }
+
                 <Image
                 style={{width: 300, height: 250 }}
                 source={{ uri: this.props.dataPost.datos.photo }}
