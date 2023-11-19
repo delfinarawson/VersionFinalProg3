@@ -48,14 +48,20 @@ class Home extends Component {
                 <TouchableOpacity style={styles.button} onPressOut={()=>this.logout()}>
                     <Text style={styles.textButton}>Log out <FontAwesomeIcon icon={faRightFromBracket} color={ 'white' }/></Text>
                 </TouchableOpacity>
-
+                
                 <Text style={styles.listapost}>Lista de posteos creados</Text>
                 
                 <FlatList
                     data={this.state.posts}
                     keyExtractor={ unPost => unPost.id }
-                    renderItem={ ({item}) => <Post dataPost = {item} />  }
+                    renderItem={ ({item}) => <View><Post dataPost = {item} /> 
+                     <TouchableOpacity style={styles.button} onPressOut={()=>this.props.navigation.navigate("Comentarios", {dataPost: {item}})}>
+                    <Text style={styles.textButton}>Comentarios <FontAwesomeIcon icon={faRightFromBracket} color={ 'white' }/></Text>
+                     </TouchableOpacity>
+
+                    </View>  }
                 />
+                 
 
                 
             </ScrollView>

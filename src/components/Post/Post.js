@@ -4,6 +4,7 @@ import { db, auth } from '../../firebase/config';
 import firebase from 'firebase/app';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {faHeart} from '@fortawesome/free-solid-svg-icons/faHeart';
+import { useNavigation } from '@react-navigation/native';
 
 class Post extends Component {
 
@@ -106,7 +107,7 @@ class Post extends Component {
         this.setState({modalVisible: false, posteoABorrar: null});
     }
 
-
+    
     render() {
         console.log("props",this.props)
         console.log(this.props.dataPost.datos.likes)
@@ -179,8 +180,8 @@ class Post extends Component {
                 />
             
 
-                <TouchableOpacity style={styles.button} onPress={() => this.comment(this.state.comentarioTexto, Date.now())} >
-                    <Text style={styles.textButton}>Comentar</Text>
+                <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate("Comentarios", {comentarioTexto: this.state.comentarioTexto, date: Date.now(), navigation: navigation})}>
+                    <Text style={styles.textButton}>Ver {this.state.cantidadDeComments}</Text>
                 </TouchableOpacity>
                 {this.props.dataPost.datos.comentarios.length > 0 ?(
                        <FlatList
