@@ -43,7 +43,9 @@ class Home extends Component {
 
 
     render(){
+        console.log(this.state.posts)
         return(
+           
             <ScrollView>
                 <TouchableOpacity style={styles.button} onPressOut={()=>this.logout()}>
                     <Text style={styles.textButton}>Log out <FontAwesomeIcon icon={faRightFromBracket} color={ 'white' }/></Text>
@@ -54,7 +56,11 @@ class Home extends Component {
                 <FlatList
                     data={this.state.posts}
                     keyExtractor={ unPost => unPost.id }
-                    renderItem={ ({item}) => <View><Post dataPost = {item} /> 
+                    renderItem={ ({item}) => <View>
+                         <TouchableOpacity onPress={()=> this.props.navigation.navigate("Perfil Usuario", { dataUser: item.datos })}>
+                         <Text>User Name: {item.datos.owner} </Text>
+                                </TouchableOpacity>
+                        <Post dataPost = {item} /> 
                      <TouchableOpacity style={styles.button} onPressOut={()=>this.props.navigation.navigate("Comentarios", {dataPost: {item}})}>
                     <Text style={styles.textButton}>Ver todos los comentarios <FontAwesomeIcon icon={faRightFromBracket} color={ 'white' }/></Text>
                      </TouchableOpacity>

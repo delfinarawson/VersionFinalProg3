@@ -53,6 +53,9 @@ class Comentarios extends Component {
                 style={{width: 300, height: 250 }}
                 source={{ uri: this.props.route.params.dataPost.item.datos.photo }}
                 />
+                <TouchableOpacity style={styles.button} onPress={ () => this.props.navigation.navigate('Menu')}>
+                   <Text style={styles.textButton}>Volver Atras</Text>
+                </TouchableOpacity>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text) => this.setState({ comentarioTexto: text  })}
