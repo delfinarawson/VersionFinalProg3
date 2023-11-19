@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {db, auth } from '../../firebase/config';
 import Post from '../../components/Post/Post';
-import {Image, TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView} from 'react-native';
+import {Image, TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView, Modal} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {faRightFromBracket} from '@fortawesome/free-solid-svg-icons/faRightFromBracket'; 
 
@@ -12,7 +12,7 @@ class MiPerfil extends Component {
             users: [],
             listaPost: [],
             cantPosts : "",
-            perfilABorrar: ""
+            perfilABorrar: null,
         }   
     }
     componentDidMount(){
@@ -60,7 +60,7 @@ class MiPerfil extends Component {
         .catch(e => {console.log(e)})
     }
     borrarPerfil(item){
-        db.collection('users').doc(this.state.users.id).delete()
+        db.collection('users').doc(this.state.users[0].id).delete()
         .then(()=> {alert('El perfil se ha eliminado exitosamente')})
         .catch(error => {
             console.error("Error al eliminar el post:", error);
@@ -83,7 +83,7 @@ class MiPerfil extends Component {
 
 
     render(){
-        console.log(this.state.cantPosts);
+        console.log(this.state.users[0]);
         return(
             <ScrollView>
                 
@@ -123,8 +123,27 @@ class MiPerfil extends Component {
                         renderItem={ ({item}) => <Post dataPost = { item } /> }
                         style= {styles.listaPosts}
                     />
-
+{ this.state.perfilABorrar !== null ?
                 
+                    < Modal animation="slide" transparent={true} visible={this.state.modalVisible}>
+                <View style={styles.chequeo}>
+                    <Text> ¿Estas seguro de que quieres eliminar este perfil?</Text>
+
+                    <TouchableOpacity style={styles.button} onPress={() => this.finalBorrarPerfil()}>
+                        <Text style={styles.textButtonDelete}>Aceptar</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button} onPress={() => this.noBorrarPerfil()}>
+                        <Text style={styles.textButtonDelete}>Cancelar</Text>
+                    </TouchableOpacity>
+                </View>
+
+
+            </Modal>
+
+                        :
+                        null 
+                        }
             </ScrollView>
             
         )}
