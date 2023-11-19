@@ -193,6 +193,18 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 20,
     },
+    container: {
+        alignItems: "center",
+        borderColor: "grey",
+        borderWidth: 3,
+        borderStyle: "solid",
+        padding: 10,
+        flex: 2,
+        display: "flex",
+        marginBottom: 2,
+        borderRadius: 10,
+        alignSelf: "center",
+      },
 
 })
 

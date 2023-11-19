@@ -53,12 +53,13 @@ class Home extends Component {
                 
                 <Text style={styles.listapost}>Lista de posteos creados</Text>
                 
-                <FlatList
+                <FlatList 
+                    
                     data={this.state.posts}
                     keyExtractor={ unPost => unPost.id }
-                    renderItem={ ({item}) => <View>
+                    renderItem={ ({item}) => <View style={styles.container}>
                          <TouchableOpacity onPress={()=> this.props.navigation.navigate("Perfil Usuario", { dataUser: item.datos })}>
-                         <Text>User Name: {item.datos.owner} </Text>
+                         <Text style={styles.owner}>User Name: {item.datos.owner} </Text>
                                 </TouchableOpacity>
                         <Post dataPost = {item} /> 
                      <TouchableOpacity style={styles.button} onPressOut={()=>this.props.navigation.navigate("Comentarios", {dataPost: {item}})}>
@@ -135,6 +136,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    owner: {
+        fontWeight: "bold",
+        marginBottom: 10,
+        fontSize: 17,
+      },
+      container: {
+        alignItems: "center",
+        borderColor: "grey",
+        borderWidth: 3,
+        borderStyle: "solid",
+        padding: 10,
+        flex: 2,
+        display: "flex",
+        marginBottom: 2,
+        borderRadius: 10,
+        alignSelf: "center",
+      },
 
     })
 

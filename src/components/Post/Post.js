@@ -96,7 +96,7 @@ class Post extends Component {
       
         return (
             <View style={styles.container}>
-                <Text style={styles.owner}>{this.props.dataPost.datos.owner}</Text>
+               
                 {
                     auth.currentUser.email === this.props.dataPost.datos.owner ?
                     
@@ -177,10 +177,7 @@ class Post extends Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: "center",
-        borderColor: "grey",
-        borderWidth: 3,
-        borderStyle: "solid",
-        padding: 50,
+        padding: 30,
         flex: 2,
         display: "flex",
         marginBottom: 2,
