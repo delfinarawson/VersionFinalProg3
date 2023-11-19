@@ -86,8 +86,6 @@ class MiPerfil extends Component {
         console.log(this.state.cantPosts);
         return(
             <ScrollView>
-
-                <Text style={styles.screenTitle}>Mis Datos</Text>
                 
                 <View>
                 <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
@@ -137,44 +135,45 @@ const styles = StyleSheet.create({
     formContainer:{
         borderColor: 'grey',
         borderStyle: 'solid',
-        borderWidth: 3,
+        borderWidth: 1,
         marginLeft: 50,
         marginTop: 50,
         marginRight: 50,
-        borderRadius: 30,
+        borderRadius: 5,
         backgroundColor: 'white',
         paddingHorizontal:10,
         marginTop: 20,
         marginBottom: 20,
     },
     cantp: {
-        textAlign: "center",
-        fontSize: 20,
+        textAlign: "left",
+        fontSize: 15,
         marginBottom: 15,
     },
     usern: {
-        textAlign: "center",
-        fontSize: 20,
+        textAlign: "left",
+        fontSize: 15,
         marginBottom: 15,
         marginTop: 15,
     },
     bio: {
-        textAlign: "center",
-        fontSize: 20,
+        textAlign: "left",
+        fontSize: 15,
         marginBottom: 15,
     },
     imgperfil: {
         width: 100, 
         height: 100,
         marginTop: 15,
-        alignSelf: 'center',
+        alignSelf: 'left',
     },
     screenTitle: {
-        fontSize: 30,
+        marginTop: 50,
+        fontSize: 18,
         fontWeight: 'bold',
         marginLeft: 20,
         marginVertical: 10,
-        color: 'blue',
+        color: 'black',
     },
     image: {
         alignSelf: 'center',

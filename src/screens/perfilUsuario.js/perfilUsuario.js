@@ -63,9 +63,9 @@ class perfilUsuario extends Component {
         console.log(this.state.users);
         return(
             <ScrollView>
-                <Text style={styles.screenTitle}>Profile</Text>
+                <Text style={styles.screenTitle}>User Profile</Text>
                 <TouchableOpacity style={styles.button} onPress={ () => this.props.navigation.navigate('Menu')}>
-                   <Text style={styles.textButton}>Volver Atras</Text>
+                   <Text style={styles.textButton}> Volver Atras</Text>
                 </TouchableOpacity>
                 <View style={styles.formContainer}>
                 <FlatList 
@@ -107,44 +107,45 @@ const styles = StyleSheet.create({
     formContainer:{
         borderColor: 'grey',
         borderStyle: 'solid',
-        borderWidth: 3,
+        borderWidth: 1,
         marginLeft: 50,
         marginTop: 50,
         marginRight: 50,
-        borderRadius: 30,
+        borderRadius: 2,
         backgroundColor: 'white',
         paddingHorizontal:10,
         marginTop: 20,
         marginBottom: 20,
     },
     cantp: {
-        textAlign: "center",
-        fontSize: 20,
+        textAlign: "left",
+        fontSize: 15,
         marginBottom: 15,
     },
     usern: {
-        textAlign: "center",
-        fontSize: 20,
+        textAlign: "left",
+        fontSize: 15,
         marginBottom: 15,
         marginTop: 15,
     },
     bio: {
-        textAlign: "center",
-        fontSize: 20,
+        textAlign: "left",
+        fontSize: 15,
         marginBottom: 15,
     },
     imgperfil: {
         width: 100, 
         height: 100,
         marginTop: 15,
-        alignSelf: 'center',
+        alignSelf: 'left',
     },
     screenTitle: {
-        fontSize: 30,
+        fontSize: 20,
         fontWeight: 'bold',
         marginLeft: 20,
         marginVertical: 10,
-        textAlign: "center",
+        textAlign: "left",
+        paddingTop: 40,
     },
     image: {
         alignSelf: 'center',
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
     mainContainer:{
         flex: 1,
         backgroundColor: '#ffffff',
-        borderRadius: 6,
+        borderRadius: 2,
         marginHorizontal: 20,
         padding: 5,
         marginVertical: 5
@@ -171,7 +172,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
-        borderRadius:4, 
+        borderRadius:2, 
         borderWidth:1,
         borderStyle: 'solid',
         borderColor: '#46627f',
@@ -189,13 +190,13 @@ const styles = StyleSheet.create({
     container: {
         alignItems: "center",
         borderColor: "grey",
-        borderWidth: 3,
+        borderWidth: 1,
         borderStyle: "solid",
         padding: 10,
         flex: 2,
         display: "flex",
         marginBottom: 2,
-        borderRadius: 10,
+        borderRadius: 1,
         alignSelf: "center",
       },
 

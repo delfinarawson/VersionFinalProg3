@@ -54,7 +54,7 @@ class Home extends Component {
                 
                 <Text style={styles.listapost}>Feed de posteos creados</Text>
                 
-                <FlatList 
+                <FlatList
                     
                     data={this.state.posts}
                     keyExtractor={ unPost => unPost.id }
@@ -63,8 +63,8 @@ class Home extends Component {
                          <Text style={styles.owner}>{item.datos.owner} </Text>
                                 </TouchableOpacity>
                         <Post dataPost = {item} /> 
-                     <TouchableOpacity style={styles.button} onPressOut={()=>this.props.navigation.navigate("Comentarios", {dataPost: {item}})}>
-                    <Text style={styles.textButton}>Ir a comentar <FontAwesomeIcon icon={faComment} color={ 'white' }/></Text>
+                     <TouchableOpacity  onPressOut={()=>this.props.navigation.navigate("Comentarios", {dataPost: {item}})}>
+                    <Text>Ir a comentar <FontAwesomeIcon icon={faComment} color={ 'white' }/></Text>
                      </TouchableOpacity>
 
                     </View>  }
@@ -82,7 +82,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
     listapost: { 
         fontWeight: "bold",
-        color: "blue",
+        color: "black",
         textAlign: "center",
         fontSize: 20,
         marginTop: 30,
@@ -125,14 +125,14 @@ const styles = StyleSheet.create({
         marginEnd: 55,
         height:30,
         width: 150,
-        backgroundColor:'blue',
+        backgroundColor:'red',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
         borderWidth:1,
         borderStyle: 'solid',
-        borderColor: '#46627f',
+        borderColor: 'white',
         marginTop: 20,
         justifyContent: 'center',
         alignItems: 'center',
@@ -153,8 +153,8 @@ const styles = StyleSheet.create({
         marginBottom: 2,
         borderRadius: 10,
         alignSelf: "center",
+        backgroundColor: 'white',
       },
-
     })
 
 
