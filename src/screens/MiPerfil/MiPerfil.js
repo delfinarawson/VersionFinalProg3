@@ -65,30 +65,28 @@ class MiPerfil extends Component {
                 <Text style={styles.screenTitle}>Profile</Text>
                 
                 <View>
+                <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
+                    <Text style={styles.textButton}>Log out</Text>
+                </TouchableOpacity>
+                <View style={styles.formContainer}>
                 <Text style={styles.mail}>{auth.currentUser.email}</Text>
-                <Text>Cantidad Posts: {this.state.cantPosts}</Text>
                 <FlatList 
                         data= {this.state.users}
                         keyExtractor={ user => user.id }
                         renderItem={ ({item}) => 
                         <View>
-                        <Text>Username: {item.data.userName}</Text> 
-                        <Image
-                        style={{width: 100, height: 80 }}
+                             <Image
+                        style={styles.imgperfil}
                         source={{ uri: item.data.FotoPerfil}}
                         />
-                        <Text>Descripción: {item.data.ShortBio}</Text>
-                </View>
-                        
+                        <Text style={styles.usern}>Username: {item.data.userName}</Text> 
+                        <Text style={styles.bio}>Descripción: {item.data.ShortBio}</Text>
+                        <Text style={styles.cantp}>Cantidad Posts: {this.state.cantPosts}</Text>
+                </View>   
                     }
                     />
+                    </View>
                   
-                    
-                    
-                    
-                <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
-                    <Text style={styles.textButton}>Log out</Text>
-                </TouchableOpacity>
                 </View>
                 <Text style={styles.screenTitle}>My Posts</Text>
                    
@@ -107,11 +105,46 @@ class MiPerfil extends Component {
 
 const styles = StyleSheet.create({
     //CONTENEDOR GENERAL
+    formContainer:{
+        borderColor: 'grey',
+        borderStyle: 'solid',
+        borderWidth: 3,
+        marginLeft: 50,
+        marginTop: 50,
+        marginRight: 50,
+        borderRadius: 30,
+        backgroundColor: 'white',
+        paddingHorizontal:10,
+        marginTop: 20,
+        marginBottom: 20,
+    },
+    cantp: {
+        textAlign: "center",
+        fontSize: 20,
+        marginBottom: 15,
+    },
+    usern: {
+        textAlign: "center",
+        fontSize: 20,
+        marginBottom: 15,
+        marginTop: 15,
+    },
+    bio: {
+        textAlign: "center",
+        fontSize: 20,
+        marginBottom: 15,
+    },
+    imgperfil: {
+        width: 100, 
+        height: 100,
+        marginTop: 15,
+        alignSelf: 'center',
+    },
     screenTitle: {
         fontSize: 30,
         fontWeight: 'bold',
         marginLeft: 20,
-        marginVertical: 10
+        marginVertical: 10,
     },
     image: {
         alignSelf: 'center',
@@ -131,6 +164,7 @@ const styles = StyleSheet.create({
     },
     button:{
         alignSelf: 'flex-end',
+        marginEnd: 55,
         height:30,
         width: 150,
         backgroundColor:'#46627f',
@@ -143,7 +177,7 @@ const styles = StyleSheet.create({
         borderColor: '#46627f',
         marginTop: 20,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     textButton:{
         color: '#fff',
@@ -155,6 +189,7 @@ const styles = StyleSheet.create({
     mail: {
         fontSize: 20,
         textAlign: 'center',
+        marginTop: 20,
     },
 
 })

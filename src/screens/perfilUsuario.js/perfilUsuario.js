@@ -75,7 +75,6 @@ class perfilUsuario extends Component {
                         <View>
                          <Image
                         style={styles.imgperfil}
-                        //style={{width: 100, height: 80}}
                         source={{ uri: item.data.FotoPerfil}}
                         />
                         <Text style={styles.usern}>Username: {item.data.userName}</Text> 
@@ -165,6 +164,7 @@ const styles = StyleSheet.create({
     },
     button:{
         alignSelf: 'flex-end',
+        marginEnd: 55,
         height:30,
         width: 150,
         backgroundColor:'#46627f',
