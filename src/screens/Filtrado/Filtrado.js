@@ -57,8 +57,8 @@ class Buscador extends Component {
 
     render() {
         return (
-            <ScrollView style={styles.search}>
-                <View style={styles.campos}>
+            <ScrollView style={styles.busqueda}>
+                <View style={styles.adentro}>
                 <TextInput style={styles.form}
                     keyboardType='default'
                     placeholder='Buscar perfil'
@@ -94,21 +94,20 @@ class Buscador extends Component {
 }
 
 const styles = StyleSheet.create({
-search: {
+busqueda: {
       borderColor: 'grey',
       borderStyle: 'solid',
-      borderWidth: 1,
+      borderWidth: 2,
+      borderRadius: 30,
       marginLeft: 50,
       marginTop: 30,
       marginRight: 50,
       marginBottom: 300,
-      minHeight: 'auto',
       backgroundColor: 'white',
     },
-campos: {
+adentro: {
       alignItems: "center", 
       marginBottom: 50,
-      padding: 10,
       marginTop: 40,
     },
 boton: {

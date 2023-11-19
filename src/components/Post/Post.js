@@ -121,7 +121,7 @@ class Post extends Component {
                     <>
 
                     <TouchableOpacity  onPress={() => this.confirmarBorrarPost()}>
-                        <Text> Borrar Post </Text>
+                        <Text style={styles.borrarp}> Borrar Post </Text>
                     </TouchableOpacity> 
                     
                     <Modal animation="slide" transparent={true} visible={this.state.modalVisible}>
@@ -215,6 +215,9 @@ const styles = StyleSheet.create({
         marginBottom: 2,
         borderRadius: 10,
         alignSelf: "center",
+      },
+      borrarp: {
+        marginBottom: 10,
       },
     owner: {
         fontWeight: "bold",
