@@ -41,7 +41,7 @@ class PostForm extends Component {
     render(){
         return (
             <View style={styles.formContainer}>
-              <Text>New Post</Text>
+              
               {this.state.showCamera ? (
                 <MyCamera onImageUpload={(url) => this.onImageUpload(url)} />
               ) : (

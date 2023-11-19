@@ -155,7 +155,9 @@ const styles = StyleSheet.create({
     },
     textButton:{
         color: '#fff',
-        textAlign: "center",
+        textAlign: 'center',
+        fontSize: 15,
+        fontWeight: 'bold'
     },
     yatengocuenta: {
         marginBottom: 10,

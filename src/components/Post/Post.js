@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList, Modal, Image } from 'react-native';
 import { db, auth } from '../../firebase/config';
 import firebase from 'firebase/app';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {faHeart} from '@fortawesome/free-solid-svg-icons/faHeart';
 
 class Post extends Component {
 
@@ -164,7 +166,7 @@ class Post extends Component {
                         :
 
                         <TouchableOpacity style={styles.button} onPress={() => this.likear()} >
-                            <Text style={styles.textButton}>Likear</Text>
+                            <Text style={styles.textButton}><FontAwesomeIcon icon={faHeart} color={ 'red' }/></Text>
                         </TouchableOpacity>
                 }
 

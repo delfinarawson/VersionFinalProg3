@@ -60,6 +60,7 @@ class Login extends Component {
     render(){
         return(
             <View style={styles.formContainer}>
+                
                 <Text style={styles.titulo}>Ingresa a tu cuenta</Text>
                 <TextInput
                     style={styles.input}
@@ -133,7 +134,9 @@ const styles = StyleSheet.create({
     },
     textButton:{
         color: '#fff',
-        textAlign: "center",
+        textAlign: 'center',
+        fontSize: 15,
+        fontWeight: 'bold'
     },
     volverhome: {
         marginBottom: 10,

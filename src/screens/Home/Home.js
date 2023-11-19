@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {TextInput, TouchableOpacity, ScrollView, Text, StyleSheet, FlatList, View} from 'react-native';
 import { db, auth } from '../../firebase/config';
 import PostForm from '../PostForm/PostForm';
-import Post from '../../components/Post/Post'; 
+import Post from '../../components/Post/Post';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {faRightFromBracket} from '@fortawesome/free-solid-svg-icons/faRightFromBracket'; 
 
 class Home extends Component {
     constructor(){
@@ -43,8 +45,8 @@ class Home extends Component {
     render(){
         return(
             <ScrollView>
-                <TouchableOpacity onPressOut={()=>this.logout()}>
-                    <Text style={styles.logout}>Logout</Text>
+                <TouchableOpacity style={styles.button} onPressOut={()=>this.logout()}>
+                    <Text style={styles.textButton}>Log out <FontAwesomeIcon icon={faRightFromBracket} color={ 'white' }/></Text>
                 </TouchableOpacity>
 
                 <Text style={styles.listapost}>Lista de posteos creados</Text>
@@ -97,7 +99,30 @@ const styles = StyleSheet.create({
         color: "black" ,
         fontSize: 15,
         marginTop: 15,
-    }
+    },
+    textButton:{
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 15,
+        fontWeight: 'bold'
+    },
+    button:{
+        alignSelf: 'flex-end',
+        marginEnd: 55,
+        height:30,
+        width: 150,
+        backgroundColor:'#46627f',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:4, 
+        borderWidth:1,
+        borderStyle: 'solid',
+        borderColor: '#46627f',
+        marginTop: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 
     })
 

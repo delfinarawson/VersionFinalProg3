@@ -2,6 +2,8 @@ import { View, Text, TextInput, TouchableOpacity, FlatList, ScrollView, StyleShe
 import React, { Component } from 'react';
 
 import { db } from "../../firebase/config"
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons/faMagnifyingGlass';
 
 class Buscador extends Component {
     constructor(props) {
@@ -69,7 +71,7 @@ class Buscador extends Component {
                     style={styles.boton}
                     onPress={() => this.searchUsuarios()}
                 >
-                    <Text style={styles.textoboton}>Buscar</Text>
+                    <Text style={styles.textoboton}>Buscar <FontAwesomeIcon icon={faMagnifyingGlass} color={ 'white' }/></Text>
                 </TouchableOpacity>
 
                 {this.state.mensajeError ? (

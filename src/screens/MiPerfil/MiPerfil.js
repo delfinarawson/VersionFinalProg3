@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {db, auth } from '../../firebase/config';
 import Post from '../../components/Post/Post';
 import {Image, TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView} from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {faRightFromBracket} from '@fortawesome/free-solid-svg-icons/faRightFromBracket'; 
 
 class MiPerfil extends Component {
     constructor(){
@@ -66,7 +68,7 @@ class MiPerfil extends Component {
                 
                 <View>
                 <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
-                    <Text style={styles.textButton}>Log out</Text>
+                    <Text style={styles.textButton}>Log out <FontAwesomeIcon icon={faRightFromBracket} color={ 'white' }></FontAwesomeIcon> </Text>
                 </TouchableOpacity>
                 <View style={styles.formContainer}>
                 <Text style={styles.mail}>{auth.currentUser.email}</Text>
