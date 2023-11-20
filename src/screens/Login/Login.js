@@ -17,20 +17,15 @@ class Login extends Component {
     }
 
     componentDidMount(){
-        auth.onAuthStateChanged((user) => {
-            console.log(user);
-            if(user !== null){
-                this.setState({
-                    logged: true,
-                    cargando: false, 
-                }) 
-            } else {
-                this.setState({
-                    logged: false, 
-                    cargando: false,
+            auth.onAuthStateChanged( user => {
+                console.log(user)
+                if (user) {
+                    //Redirigir al usuario a la home del sitio.
+                   this.props.navigation.navigate('Menu')
+                }
+    
             })
-          }
-        })
+        
     }
 
     login (email, pass){
