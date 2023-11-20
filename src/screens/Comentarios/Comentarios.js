@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList, Modal, Image } from 'react-native';
 import { db, auth } from '../../firebase/config';
 import firebase from 'firebase/app';
-import { faBold } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {faComment} from '@fortawesome/free-solid-svg-icons/faComment'; 
 
 class Comentarios extends Component {
 
@@ -64,9 +65,12 @@ class Comentarios extends Component {
                     keyboardType='default'
                     value={this.state.comentarioTexto}
                 />
+
             
+            {this.state.comentarioTexto == '' ? '' :
+            <>
                 <TouchableOpacity style={styles.button} onPress={() => this.comment(this.state.comentarioTexto, Date.now())} >
-                    <Text style={styles.textButton}>Comentar</Text>
+                    <Text style={styles.textButton}><FontAwesomeIcon icon={faComment} color={'white'}/> Comentar</Text>
                 </TouchableOpacity>
                 {this.props.route.params.dataPost.item.datos.comentarios.length > 0 ?(
                        <FlatList
@@ -82,6 +86,9 @@ class Comentarios extends Component {
                       
                         ) : 
                         (<Text style={styles.sincomments}>No hay comentarios</Text>)}
+                    </>
+                    }
+                    
             </View>
 
         )
