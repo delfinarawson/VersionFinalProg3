@@ -4,6 +4,7 @@ import Post from '../../components/Post/Post';
 import {Image, TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView, Modal} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {faRightFromBracket} from '@fortawesome/free-solid-svg-icons/faRightFromBracket'; 
+import {faTrash} from '@fortawesome/free-solid-svg-icons/faTrash';
 
 class MiPerfil extends Component {
     constructor(){
@@ -62,6 +63,7 @@ class MiPerfil extends Component {
     borrarPerfil(item){
         db.collection('users').doc(this.state.users[0].id).delete()
         .then(()=> {alert('El perfil se ha eliminado exitosamente')})
+        this.props.navigation.navigate('Login')
         .catch(error => {
             console.error("Error al eliminar el post:", error);
             });
@@ -91,9 +93,7 @@ class MiPerfil extends Component {
                 <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
                     <Text style={styles.textButton}>Log out <FontAwesomeIcon icon={faRightFromBracket} color={ 'white' }></FontAwesomeIcon> </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => this.confirmarBorrarPerfil()}>
-                        <Text>Borrar perfil </Text>
-                    </TouchableOpacity> 
+                
                 <View style={styles.formContainer}>
                 <Text style={styles.mail}>{auth.currentUser.email}</Text>
                 <FlatList 
@@ -108,7 +108,12 @@ class MiPerfil extends Component {
                         <Text style={styles.usern}>Username: {item.data.userName}</Text> 
                         <Text style={styles.bio}>Descripción: {item.data.ShortBio}</Text>
                         <Text style={styles.cantp}>Cantidad Posts: {this.state.cantPosts}</Text>
-                </View>   
+                
+                <TouchableOpacity style={styles.buttonBorrarPost} onPress={() => this.confirmarBorrarPerfil()}>
+                <Text style={styles.trash}>Eliminar perfil <FontAwesomeIcon icon={faTrash} color = {'red'}/> </Text>
+                </TouchableOpacity> 
+
+            </View>   
                     }
                     />
 
@@ -129,12 +134,12 @@ class MiPerfil extends Component {
                 <View style={styles.chequeo}>
                     <Text> ¿Estas seguro de que quieres eliminar este perfil?</Text>
 
-                    <TouchableOpacity style={styles.button} onPress={() => this.finalBorrarPerfil()}>
-                        <Text style={styles.textButtonDelete}>Aceptar</Text>
+                    <TouchableOpacity style={styles.button2} onPress={() => this.finalBorrarPerfil()}>
+                        <Text>Aceptar</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button} onPress={() => this.noBorrarPerfil()}>
-                        <Text style={styles.textButtonDelete}>Cancelar</Text>
+                    <TouchableOpacity style={styles.button2} onPress={() => this.noBorrarPerfil()}>
+                        <Text>Cancelar</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -251,6 +256,46 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignSelf: "center",
       },
+      buttonBorrarPost: {
+        alignSelf: 'flex-end',
+        marginEnd: 55,
+        height:30,
+        width: 150,
+        backgroundColor:'white',
+        textAlign: 'center',
+        borderRadius:4, 
+        borderWidth:1,
+        borderColor: 'white',
+        marginTop: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      trash: {
+        fontWeight: 'bold',
+      },
+      chequeo: {
+        position: 'absolute',
+        width: 300,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+        padding: 20,
+        zIndex: 1, // Asegura que el cartel esté encima de los demás elementos
+    },
+    button2: {
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius: 4,
+        borderWidth: 1,
+        borderStyle: 'solid',
+        marginTop: 5,
+        marginBottom: 10,
+        borderColor: 'white',
+    }
+    
+
 
 })
 
