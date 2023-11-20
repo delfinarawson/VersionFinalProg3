@@ -72,10 +72,29 @@ class Login extends Component {
                     secureTextEntry={true}
                     value={this.state.password}
                 />
+
+{
+                this.state.name && this.state.email && this.state.password && this.state.email.includes('@') && this.state.email.includes('.com') && this.state.password.length >= 6 ? 
+
+                ''
+            : 
+            this.state.email.includes('@') === false || this.state.email.includes('.com') === false ? (
+            
+                <Text style={styles.errorText}>El email debe contener '@' y '.com'</Text>
+            ) : 
+                '' }
+            { this.state.password.length < 6 ? (
+
+                <Text style={styles.errorText}>La contraseña debe tener 6 o mas caracteres.</Text>
+            ) 
+            : ''
+            }
+
+{this.state.email == '' || this.state.name == '' || this.state.password == '' ? '' :
                 <TouchableOpacity style={styles.button} onPress={()=>this.login(this.state.email, this.state.password)}>
                     <Text style={styles.textButton}>Ingresar</Text>    
                 </TouchableOpacity>
-
+    }
             
 
                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('Registro')}>
@@ -145,6 +164,11 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 15,
     },
+    errorText: {
+        color: 'red',
+        marginBottom: 16,
+        fontSize: 14,
+      },
     
 })
 
