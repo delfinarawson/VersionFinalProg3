@@ -14,7 +14,7 @@ class Post extends Component {
 
         this.state = {
             like: false,
-            cantidadDeLikes: 0,
+            cantidadDeLikes: this.props.dataPost.datos.likes.length,
             cantidadDeComments: 0,
             comentarios: [],
             comentarioTexto: [],
